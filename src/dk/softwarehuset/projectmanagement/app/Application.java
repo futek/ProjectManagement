@@ -43,7 +43,7 @@ public class Application {
 		}
 		
 		if (employees.containsKey(employee.getId())) {
-			throw new NonUniqueIdentifierException("Not admin");
+			throw new NonUniqueIdentifierException("Employee id not unique");
 		}
 		
 		employees.put(employee.getId(), employee);
