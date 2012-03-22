@@ -10,7 +10,7 @@ public class AdminScreen extends Screen {
 	@Override
 	public void printMenu(PrintWriter out) {
 		out.print("0) Sign Out\n" +
-				  "1) Create Employee\n" +
+				  "1) Add Employee\n" +
 				  "> ");
 		out.flush();
 	}
