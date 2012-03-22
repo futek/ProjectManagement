@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import dk.softwarehuset.projectmanagement.ui.ApplicationUI;
-
 public class Application {
 	private Map<String, Employee> employees = new HashMap<String, Employee>();
 	private Employee currentEmployee;
