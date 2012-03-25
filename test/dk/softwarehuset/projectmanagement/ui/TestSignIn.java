@@ -14,11 +14,12 @@ import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
-import dk.softwarehuset.projectmanagement.util.UITestUtil;
+import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 
 public class TestSignIn {
 	private Application app = new Application();
 	private ApplicationUI appUI = new ApplicationUI(app);
+	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 	
 	@Test
 	public void testAdminSignIn() throws IOException {
@@ -26,24 +27,25 @@ public class TestSignIn {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		UITestUtil.testScreenInteraction(appUI, "1) Sign In", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "Employee id: ", "ZZZZ", "You signed in as \"Administrator\".", false);
+		appUITester.selectOption("Sign In", "");
+		appUITester.input("Employee id: ", "zzzz", "You signed in as \"Administrator\".");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
 		assertTrue(app.getCurrentEmployee().isAdmin());
 		
 		// Wrong selection
-		UITestUtil.testScreenInteraction(appUI, "0) Sign Out", "999", "Wrong selection.", false);
+		appUITester.assertOptionExists("Sign Out");
+		appUITester.input("999", "Wrong selection.");
 		
 		// Sign out
-		UITestUtil.testScreenInteraction(appUI, "0) Sign Out", "0", "You signed out.", false);
+		appUITester.selectOption("Sign Out", "You signed out.");
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 		
 		// Exit
-		UITestUtil.testScreenInteraction(appUI, "0) Exit", "0", "Exited.", true);
+		appUITester.selectOption("Exit", "Exited.", true);
 	}
 	
 	@Test
@@ -60,23 +62,24 @@ public class TestSignIn {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee
-		UITestUtil.testScreenInteraction(appUI, "1) Sign In", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "Employee id: ", id, "You signed in as \"" + name + "\".", false);
+		appUITester.selectOption("Sign In", "");
+		appUITester.input("Employee id: ", id, "You signed in as \"" + name + "\".");
 		
 		// Check employee is signed in
 		assertNotNull(app.getCurrentEmployee());
 		assertFalse(app.getCurrentEmployee().isAdmin());
 
 		// Wrong selection
-		UITestUtil.testScreenInteraction(appUI, "0) Sign Out", "999", "Wrong selection.", false);
+		appUITester.assertOptionExists("Sign Out");
+		appUITester.input("999", "Wrong selection.");
 		
 		// Sign out
-		UITestUtil.testScreenInteraction(appUI, "0) Sign Out", "0", "You signed out.", false);
+		appUITester.selectOption("Sign Out", "You signed out.");
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 		
 		// Exit
-		UITestUtil.testScreenInteraction(appUI, "0) Exit", "0", "Exited.", true);
+		appUITester.selectOption("Exit", "Exited.", true);
 	}
 }

@@ -13,11 +13,12 @@ import dk.softwarehuset.projectmanagement.app.Application;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
-import dk.softwarehuset.projectmanagement.util.UITestUtil;
+import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 
 public class TestCreateEmployee {
 	private Application app = new Application();
 	private ApplicationUI appUI = new ApplicationUI(app);
+	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 	
 	@Test
 	public void testCreateEmployee() throws WrongCredentialsException, PermissionDeniedException, NonUniqueIdentifierException, IOException {
@@ -28,8 +29,8 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		UITestUtil.testScreenInteraction(appUI, "1) Sign In", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "Employee id: ", "ZZZZ", "You signed in as \"Administrator\".", false);
+		appUITester.selectOption("Sign In", "");
+		appUITester.input("Employee id: ", "zzzz", "You signed in as \"Administrator\".");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
@@ -38,9 +39,9 @@ public class TestCreateEmployee {
 		// Add new employee
 		String id = "ABCD";
 		String name = "Alpha Bravo Charlie Delta";
-		UITestUtil.testScreenInteraction(appUI, "1) Add Employee", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "New employee id: ", id, "", false);
-		UITestUtil.testScreenInteraction(appUI, "New employee name: ", name, "", false);
+		appUITester.selectOption("Add Employee", "");
+		appUITester.input("New employee id: ", id, "");
+		appUITester.input("New employee name: ", name, "");
 		
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
@@ -49,13 +50,13 @@ public class TestCreateEmployee {
 		assertEquals(app.getEmployees().get(id).getName(), name);
 		
 		// Sign out
-		UITestUtil.testScreenInteraction(appUI, "0) Sign Out", "0", "You signed out.", false);
+		appUITester.selectOption("Sign Out", "You signed out.");
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 		
 		// Exit
-		UITestUtil.testScreenInteraction(appUI, "0) Exit", "0", "Exited.", true);
+		appUITester.selectOption("Exit", "Exited.", true);
 	}
 
 	@Test
@@ -67,8 +68,8 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		UITestUtil.testScreenInteraction(appUI, "1) Sign In", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "Employee id: ", "ZZZZ", "You signed in as \"Administrator\".", false);
+		appUITester.selectOption("Sign In", "");
+		appUITester.input("Employee id: ", "zzzz", "You signed in as \"Administrator\".");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
@@ -77,9 +78,9 @@ public class TestCreateEmployee {
 		// Add new employee
 		String id1 = "ABCD";
 		String name1 = "Alpha Bravo Charlie Delta";
-		UITestUtil.testScreenInteraction(appUI, "1) Add Employee", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "New employee id: ", id1, "", false);
-		UITestUtil.testScreenInteraction(appUI, "New employee name: ", name1, "", false);
+		appUITester.selectOption("Add Employee", "");
+		appUITester.input("New employee id: ", id1, "");
+		appUITester.input("New employee name: ", name1, "");
 		
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
@@ -88,19 +89,19 @@ public class TestCreateEmployee {
 		assertEquals(app.getEmployees().get(id1).getName(), name1);
 		
 		// Add another employee with same id
-		UITestUtil.testScreenInteraction(appUI, "1) Add Employee", "1", "", false);
-		UITestUtil.testScreenInteraction(appUI, "New employee id: ", id1, "Employee id taken.", false);
+		appUITester.selectOption("Add Employee", "");
+		appUITester.input("New employee id: ", id1, "Employee id taken.");
 		
 		// Check employee not added
 		assertTrue(app.getEmployees().size() == 2);
 		
 		// Sign out
-		UITestUtil.testScreenInteraction(appUI, "0) Sign Out", "0", "You signed out.", false);
+		appUITester.selectOption("Sign Out", "You signed out.");
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 		
 		// Exit
-		UITestUtil.testScreenInteraction(appUI, "0) Exit", "0", "Exited.", true);
+		appUITester.selectOption("Exit", "Exited.", true);
 	}
 }
