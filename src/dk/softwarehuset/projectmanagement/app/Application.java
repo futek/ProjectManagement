@@ -56,12 +56,7 @@ public class Application {
 			throw new PermissionDeniedException("Not signed in");
 		}
 		
-		if (!getCurrentEmployee().isAdmin()) {
-			throw new PermissionDeniedException("Not admin");
-		}
-		
 		projects.put(project.getName(), project);
-		
 	}
 	
 	public Map<String, Project> getProjects() {
