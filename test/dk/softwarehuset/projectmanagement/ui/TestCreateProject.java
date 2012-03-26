@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -21,7 +22,7 @@ public class TestCreateProject extends SampleDataSetup {
 	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 	
 	@Test
-	public void testCreateProject() throws WrongCredentialsException {		
+	public void testCreateProject() throws WrongCredentialsException, IOException {
 		// Check no projects exist
 		assertEquals(0, app.getProjects().size());
 		
@@ -45,7 +46,6 @@ public class TestCreateProject extends SampleDataSetup {
 		
 		// Check project exists
 		assertEquals(1, app.getProjects().size());
-		assertEquals("120001", app.getProjects().get("120001").getId());
 		assertEquals(name, app.getProjects().get("120001").getName());
 		
 		// Sign out
