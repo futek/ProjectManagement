@@ -5,18 +5,20 @@ import java.io.IOException;
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.app.Application;
-import dk.softwarehuset.projectmanagement.util.UITestUtil;
+import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 
 public class TestExit {
 	private Application app = new Application();
 	private ApplicationUI appUI = new ApplicationUI(app);
+	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 	
 	@Test
 	public void testExit() throws IOException {
-		UITestUtil.testScreenInteraction(appUI, "0) Exit", "0", "Exited.", true);
+		appUITester.selectOption("Exit", "Exited.", true);
 	}
 	@Test
 	public void testExitFailWrongOption() throws IOException {
-		UITestUtil.testScreenInteraction(appUI, "0) Exit", "mong", "Wrong selection.", false);
+		appUITester.assertOptionExists("Exit");
+		appUITester.input("999", "Wrong selection.");
 	}
 }
