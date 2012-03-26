@@ -6,7 +6,9 @@ import java.util.Map;
 
 public class Application {
 	private Map<String, Employee> employees = new HashMap<String, Employee>();
+	private Map<String, Project> projects = new HashMap<String, Project>();
 	private Employee currentEmployee;
+	private DateServer dateServer = new DateServer();
 
 	public Application() {
 		Admin admin = new Admin("ZZZZ", "Administrator");
@@ -47,5 +49,27 @@ public class Application {
 		}
 		
 		employees.put(employee.getId(), employee);
+	}
+
+	public void addProject(Project project) throws PermissionDeniedException {
+		if (getCurrentEmployee() == null) {
+			throw new PermissionDeniedException("Not signed in");
+		}
+		
+		if (!getCurrentEmployee().isAdmin()) {
+			throw new PermissionDeniedException("Not admin");
+		}
+		
+		projects.put(project.getName(), project);
+		
+	}
+	
+	public Map<String, Project> getProjects() {
+		return Collections.unmodifiableMap(projects);
+	}
+
+	public void setDateServer(DateServer dateServer) {
+		this.dateServer = new DateServer();
+		
 	}
 }
