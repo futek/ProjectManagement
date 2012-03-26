@@ -1,5 +1,6 @@
 package dk.softwarehuset.projectmanagement.app;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +10,8 @@ public class Application {
 	private Map<String, Project> projects = new HashMap<String, Project>();
 	private Employee currentEmployee;
 	private DateServer dateServer = new DateServer();
+	private int projectIdCounter;// = 1;
+	private int yearOfLastProject = 0;
 
 	public Application() {
 		Admin admin = new Admin("ZZZZ", "Administrator");
@@ -51,12 +54,27 @@ public class Application {
 		employees.put(employee.getId(), employee);
 	}
 
-	public void addProject(Project project) throws PermissionDeniedException {
+	public void addProject(Project project) throws PermissionDeniedException, TooManyProjectException {
 		if (getCurrentEmployee() == null) {
 			throw new PermissionDeniedException("Not signed in");
 		}
 		
-		projects.put(project.getName(), project);
+		if (projectIdCounter >= 9999) {
+			throw new TooManyProjectException("Limit of 9999 projects reached, wait until new year");
+		}
+		
+		int currentYear = dateServer.getDate().get(Calendar.YEAR);
+		
+		if (yearOfLastProject != currentYear) {
+			projectIdCounter = 1;
+		}
+		
+		String id = String.format("%d%04d", currentYear % 100, projectIdCounter);
+		
+		projects.put(id, project);
+		
+		projectIdCounter++;
+		yearOfLastProject = currentYear;
 	}
 	
 	public Map<String, Project> getProjects() {
