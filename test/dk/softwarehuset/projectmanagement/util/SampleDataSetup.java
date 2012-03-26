@@ -13,7 +13,7 @@ import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
-import dk.softwarehuset.projectmanagement.ui.DateServer;
+import dk.softwarehuset.projectmanagement.app.DateServer;
 
 public class SampleDataSetup {
 	protected Application app = new Application();

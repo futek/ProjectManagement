@@ -10,7 +10,6 @@ import java.util.GregorianCalendar;
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.util.SampleDataSetup;
-import dtu.library.app.DateServer;
 
 public class TestCreateProject extends SampleDataSetup {
 	@Test
