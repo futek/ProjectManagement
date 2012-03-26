@@ -2,10 +2,7 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
-import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
-import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.Project;
-import dk.softwarehuset.projectmanagement.app.TooManyProjectsException;
 
 public class EditProjectNameScreen extends Screen {
 	private Project project;
@@ -26,9 +23,9 @@ public class EditProjectNameScreen extends Screen {
 	public boolean processInput(String input, PrintWriter out) {
 		String name = input.trim();
 		project.setName(name);
-		
-		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));	
-		
+
+		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+
 		return false;
 	}
 }
