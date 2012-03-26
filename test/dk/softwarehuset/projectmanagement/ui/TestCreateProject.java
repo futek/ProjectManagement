@@ -1,18 +1,14 @@
 package dk.softwarehuset.projectmanagement.ui;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
-import dk.softwarehuset.projectmanagement.app.Application;
-import dk.softwarehuset.projectmanagement.app.DateServer;
-import dk.softwarehuset.projectmanagement.app.Project;
 import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 import dk.softwarehuset.projectmanagement.util.SampleDataSetup;
