@@ -10,17 +10,10 @@ import java.util.GregorianCalendar;
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.util.SampleDataSetup;
-import dtu.library.app.DateServer;
 
 public class TestCreateProject extends SampleDataSetup {
 	@Test
 	public void testCreateProject() throws WrongCredentialsException {
-		//Set date
-		DateServer dateServer = mock(DateServer.class);
-		app.setDateServer(dateServer);
-		Calendar date = new GregorianCalendar(2012, Calendar.MARCH, 26);
-		when(dateServer.getDate()).thenReturn(date);
-		
 		// Check no projects exist
 		assertEquals(0, app.getProjects().size());
 		
