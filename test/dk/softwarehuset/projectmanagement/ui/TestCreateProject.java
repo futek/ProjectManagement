@@ -27,7 +27,7 @@ public class TestCreateProject extends SampleDataSetup {
 		
 		// Sign in as employee
 		appUITester.selectOption("Sign In", "");
-		appUITester.input("Employee id: ", "ABCD");
+		appUITester.input("Employee id: ", "ABCD", "You signed in as \"Alpha Bravo Charlie Delta\".");
 		
   	// Check employee is signed in and not admin
 		assertNotNull(app.getCurrentEmployee());
@@ -44,9 +44,11 @@ public class TestCreateProject extends SampleDataSetup {
 		assertEquals(1, app.getProjects().size());
 		assertEquals(name, app.getProjects().get("120001").getName());
 		
+		// Exit edit project properties screen
+		appUITester.selectOption("Exit", "");
+		
 		// Sign out
 		appUITester.selectOption("Sign Out", "You signed out.");
-		appUITester.input("New project name: ", name, "Project \"" + name + "\" created.");
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
