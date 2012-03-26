@@ -13,7 +13,7 @@ import dk.softwarehuset.projectmanagement.util.SampleDataSetup;
 
 public class TestCreateProject extends SampleDataSetup {
 	@Test
-	public void testCreateProject() throws WrongCredentialsException {
+	public void testCreateProject() throws WrongCredentialsException, PermissionDeniedException {
 		// Check no projects exist
 		assertEquals(0, app.getProjects().size());
 		
