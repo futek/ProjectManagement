@@ -1,11 +1,6 @@
 package dk.softwarehuset.projectmanagement.app;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
