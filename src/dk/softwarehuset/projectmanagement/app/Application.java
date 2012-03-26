@@ -54,13 +54,13 @@ public class Application {
 		employees.put(employee.getId(), employee);
 	}
 
-	public void addProject(Project project) throws PermissionDeniedException, TooManyProjectException {
+	public void addProject(Project project) throws PermissionDeniedException, TooManyProjectsException {
 		if (getCurrentEmployee() == null) {
 			throw new PermissionDeniedException("Not signed in");
 		}
 		
-		if (projectIdCounter >= 9999) {
-			throw new TooManyProjectException("Limit of 9999 projects reached, wait until new year");
+		if (projectIdCounter > 9999) {
+			throw new TooManyProjectsException("Limit of 9999 projects reached, wait until new year");
 		}
 		
 		int currentYear = dateServer.getDate().get(Calendar.YEAR);

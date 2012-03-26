@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.Project;
-import dk.softwarehuset.projectmanagement.app.TooManyProjectException;
+import dk.softwarehuset.projectmanagement.app.TooManyProjectsException;
 
 public class EditProjectNameScreen extends Screen {
 	private Project project;

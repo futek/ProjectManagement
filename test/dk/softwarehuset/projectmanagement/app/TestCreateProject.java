@@ -8,7 +8,7 @@ import dk.softwarehuset.projectmanagement.util.SampleDataSetup;
 
 public class TestCreateProject extends SampleDataSetup {
 	@Test
-	public void testCreateProject() throws WrongCredentialsException, PermissionDeniedException, TooManyProjectException {
+	public void testCreateProject() throws WrongCredentialsException, PermissionDeniedException, TooManyProjectsException {
 		// Check no projects exist
 		assertEquals(0, app.getProjects().size());
 		

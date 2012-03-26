@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.Project;
-import dk.softwarehuset.projectmanagement.app.TooManyProjectException;
+import dk.softwarehuset.projectmanagement.app.TooManyProjectsException;
 
 public class CreateProjectNameScreen extends Screen {
 	public CreateProjectNameScreen(ApplicationUI appUI) {
@@ -25,7 +25,7 @@ public class CreateProjectNameScreen extends Screen {
 		
 		try {
 			appUI.getApplication().addProject(project);
-		} catch (TooManyProjectException e) {
+		} catch (TooManyProjectsException e) {
 			out.println(e.getMessage() + ".");
 			appUI.setScreen(new EmployeeScreen(appUI));
 			return false;
