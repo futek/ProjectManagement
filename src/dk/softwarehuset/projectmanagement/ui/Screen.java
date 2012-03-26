@@ -9,6 +9,6 @@ public abstract class Screen {
 		this.appUI = appUI;
 	}
 	
-	public abstract void printMenu(PrintWriter out);
+	public abstract void print(PrintWriter out);
 	public abstract boolean processInput(String input, PrintWriter out);
 }

@@ -6,23 +6,19 @@ import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.Project;
 import dk.softwarehuset.projectmanagement.app.TooManyProjectsException;
 
-public class CreateProjectNameScreen extends Screen {
-	public CreateProjectNameScreen(ApplicationUI appUI) {
-		super(appUI);
-	}
+public class CreateProjectNameScreen extends PromptScreen {
+	private static String PROMPT = "New project name";
 
-	@Override
-	public void printMenu(PrintWriter out) {
-		out.print("New project name: ");
-		out.flush();
+	public CreateProjectNameScreen(ApplicationUI appUI) {
+		super(appUI, PROMPT);
 	}
 
 	@Override
 	public boolean processInput(String input, PrintWriter out) {
 		String name = input.trim();
-		
+
 		Project project = new Project(name);
-		
+
 		try {
 			appUI.getApplication().addProject(project);
 		} catch (TooManyProjectsException e) {
@@ -34,10 +30,10 @@ public class CreateProjectNameScreen extends Screen {
 			appUI.setScreen(new StartScreen(appUI));
 			return false;
 		}
-		
+
 		out.printf("Project \"%s\" created.\n", project.getName());
-		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));	
-		
+		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+
 		return false;
 	}
 }

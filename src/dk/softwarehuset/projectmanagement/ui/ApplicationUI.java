@@ -25,7 +25,7 @@ public class ApplicationUI {
 	}
 	
 	public void printMenu(PrintWriter out) {
-		currentScreen.printMenu(out);
+		currentScreen.print(out);
 	}
 
 	public String readInput(BufferedReader in) throws IOException {

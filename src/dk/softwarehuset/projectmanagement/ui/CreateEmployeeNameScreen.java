@@ -6,27 +6,23 @@ import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 
-public class CreateEmployeeNameScreen extends Screen {
-	private String id;
-	
-	public CreateEmployeeNameScreen(ApplicationUI appUI, String id) {
-		super(appUI);
-		
-		this.id = id;
-	}
+public class CreateEmployeeNameScreen extends PromptScreen {
+	private static String PROMPT = "New employee name";
 
-	@Override
-	public void printMenu(PrintWriter out) {
-		out.print("New employee name: ");
-		out.flush();
+	private String id;
+
+	public CreateEmployeeNameScreen(ApplicationUI appUI, String id) {
+		super(appUI, PROMPT);
+
+		this.id = id;
 	}
 
 	@Override
 	public boolean processInput(String input, PrintWriter out) {
 		String name = input.trim();
-		
+
 		Employee employee = new Employee(id, name);
-		
+
 		try {
 			appUI.getApplication().addEmployee(employee);
 		} catch (NonUniqueIdentifierException e) {
@@ -38,10 +34,9 @@ public class CreateEmployeeNameScreen extends Screen {
 			appUI.setScreen(new StartScreen(appUI));
 			return false;
 		}
-		
-		out.println();
+
 		appUI.setScreen(new AdminScreen(appUI));
-		
+
 		return false;
 	}
 }

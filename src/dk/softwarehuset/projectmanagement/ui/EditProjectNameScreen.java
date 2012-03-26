@@ -4,19 +4,21 @@ import java.io.PrintWriter;
 
 import dk.softwarehuset.projectmanagement.app.Project;
 
-public class EditProjectNameScreen extends Screen {
+public class EditProjectNameScreen extends PromptScreen {
+	private static String PROMPT = "New project name";
+
 	private Project project;
 
 	public EditProjectNameScreen(ApplicationUI appUI, Project project) {
-		super(appUI);
+		super(appUI, PROMPT);
+
 		this.project = project;
 	}
 
 	@Override
-	public void printMenu(PrintWriter out) {
-		out.println("Old project name: " + project.getName());
-		out.print("New project name: ");
-		out.flush();
+	public void print(PrintWriter out) {
+		out.printf("Old project name: %s\n", project.getName());
+		super.print(out);
 	}
 
 	@Override
