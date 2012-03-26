@@ -27,7 +27,7 @@ public class SampleDataSetup {
 		when(dateServer.getDate()).thenReturn(date);
 		
 		// Sign in as administrator
-		app.SignIn("zzzz");
+		app.SignIn("ZZZZ");
 		
 		// Add employees
 		Employee employee1 = new Employee("ABCD", "Alpha Bravo Charlie Delta");
