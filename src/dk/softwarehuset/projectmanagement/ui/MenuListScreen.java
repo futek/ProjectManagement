@@ -37,7 +37,9 @@ public abstract class MenuListScreen extends Screen {
 		return optionSelected(options[index], out);
 	}
 
-	public abstract boolean optionSelected(String option, PrintWriter out);
+	public boolean optionSelected(String option, PrintWriter out) {
+		return false;
+	}
 
 	public boolean invalidOptionSelected(PrintWriter out) {
 		out.println("Invalid option selected.");

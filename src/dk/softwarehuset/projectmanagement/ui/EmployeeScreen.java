@@ -4,8 +4,9 @@ import java.io.PrintWriter;
 
 public class EmployeeScreen extends MenuListScreen {
 	private static String[] OPTIONS = new String[] {
-		"Sign Out",
-		"Create Project"
+			"Sign Out",
+			"Create Project",
+			"Browse all projects"
 	};
 
 	public EmployeeScreen(ApplicationUI appUI) {
@@ -20,6 +21,8 @@ public class EmployeeScreen extends MenuListScreen {
 			appUI.setScreen(new StartScreen(appUI));
 		} else if (option.equals("Create Project")) {
 			appUI.setScreen(new CreateProjectNameScreen(appUI));
+		} else if (option.equals("Browse all projects")) {
+			appUI.setScreen(new BrowseAllProjectsScreen(appUI));
 		}
 
 		return false;

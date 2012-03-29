@@ -31,6 +31,6 @@ public class TestBrowseProjects extends SampleDataSetupWithProjects {
 		appUITester.selectOption("Exit");
 
 		// Sign out
-		appUITester.selectOption("Sign Out");
+		appUITester.selectOption("Sign Out", "You signed out.");
 	}
 }
