@@ -19,7 +19,7 @@ public class TestCreateProject extends SampleDataSetup {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as employee
-		app.SignIn("ABCD");
+		app.signIn("ABCD");
 
 		// Check employee is signed in and not admin
 		assertNotNull(app.getCurrentEmployee());
@@ -37,7 +37,7 @@ public class TestCreateProject extends SampleDataSetup {
 		assertEquals(project, app.getProjects().get("120001"));
 
 		// Sign out
-		app.SignOut();
+		app.signOut();
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
@@ -52,7 +52,7 @@ public class TestCreateProject extends SampleDataSetup {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as employee
-		app.SignIn("ABCD");
+		app.signIn("ABCD");
 
 		// Check employee is signed in and not admin
 		assertNotNull(app.getCurrentEmployee());

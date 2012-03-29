@@ -17,7 +17,7 @@ public class SignInScreen extends PromptScreen {
 		String id = input.trim().toUpperCase();
 
 		try {
-			appUI.getApplication().SignIn(id);
+			appUI.getApplication().signIn(id);
 		} catch (WrongCredentialsException e) {
 			out.println("Wrong credentials.");
 			appUI.setScreen(new StartScreen(appUI));
