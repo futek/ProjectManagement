@@ -22,7 +22,7 @@ public class Application {
 		return currentEmployee;
 	}
 
-	public void SignIn(String id) throws WrongCredentialsException {
+	public void signIn(String id) throws WrongCredentialsException {
 		if (!employees.containsKey(id)) {
 			throw new WrongCredentialsException("No employee with that identifier");
 		}
@@ -30,7 +30,7 @@ public class Application {
 		currentEmployee = employees.get(id);
 	}
 
-	public void SignOut() {
+	public void signOut() {
 		currentEmployee = null;
 	}
 

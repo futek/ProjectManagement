@@ -15,7 +15,7 @@ public class EmployeeScreen extends MenuListScreen {
 	@Override
 	public boolean optionSelected(String option, PrintWriter out) {
 		if (option.equals("Sign Out")) {
-			appUI.getApplication().SignOut();
+			appUI.getApplication().signOut();
 			out.println("You signed out.");
 			appUI.setScreen(new StartScreen(appUI));
 		} else if (option.equals("Create Project")) {

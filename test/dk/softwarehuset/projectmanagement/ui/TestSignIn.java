@@ -51,12 +51,12 @@ public class TestSignIn {
 	@Test
 	public void testEmployeeSignIn() throws IOException, PermissionDeniedException, NonUniqueIdentifierException, WrongCredentialsException {
 		// Sample data
-		app.SignIn("ZZZZ");
+		app.signIn("ZZZZ");
 		String id = "ABCD";
 		String name = "Alpha Bravo Charlie Delta";
 		Employee employee = new Employee(id, name);
 		app.addEmployee(employee);
-		app.SignOut();
+		app.signOut();
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());

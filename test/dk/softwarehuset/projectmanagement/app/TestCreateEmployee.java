@@ -13,7 +13,7 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in with wrong credentials
-		app.SignIn("ABCD");
+		app.signIn("ABCD");
 	}
 	
 	@Test
@@ -22,14 +22,14 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		app.SignIn("ZZZZ");
+		app.signIn("ZZZZ");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
 		assertTrue(app.getCurrentEmployee().isAdmin());
 		
 		// Sign out
-		app.SignOut();
+		app.signOut();
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
@@ -41,7 +41,7 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		app.SignIn("ZZZZ");
+		app.signIn("ZZZZ");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
@@ -58,7 +58,7 @@ public class TestCreateEmployee {
 		assertSame(app.getEmployees().get(id), employee);
 		
 		// Sign out
-		app.SignOut();
+		app.signOut();
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
@@ -82,7 +82,7 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		app.SignIn("ZZZZ");
+		app.signIn("ZZZZ");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
@@ -99,13 +99,13 @@ public class TestCreateEmployee {
 		assertSame(app.getEmployees().get(id), employee);
 		
 		// Sign out
-		app.SignOut();
+		app.signOut();
 		
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as new employee
-		app.SignIn("ABCD");
+		app.signIn("ABCD");
 		
 		// Check employee is signed in and is not admin
 		assertNotNull(app.getCurrentEmployee());
@@ -124,7 +124,7 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 		
 		// Sign in as an employee with admin rights
-		app.SignIn("ZZZZ");
+		app.signIn("ZZZZ");
 		
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());

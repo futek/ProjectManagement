@@ -27,7 +27,7 @@ public class SampleDataSetup {
 		when(dateServer.getDate()).thenReturn(date);
 		
 		// Sign in as administrator
-		app.SignIn("ZZZZ");
+		app.signIn("ZZZZ");
 		
 		// Add employees
 		Employee employee1 = new Employee("ABCD", "Alpha Bravo Charlie Delta");
@@ -38,6 +38,6 @@ public class SampleDataSetup {
 		app.addEmployee(employee3);
 		
 		// Sign out
-		app.SignOut();
+		app.signOut();
 	}
 }
