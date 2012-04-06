@@ -83,7 +83,7 @@ public class TestCreateProject extends SampleDataSetup {
 		}
 
 		// Attempt to create the 10000th project
-		appUITester.selectOption("Create Project");
+		appUITester.selectOption("Create Project").expectNothing();
 		appUITester.expect("New project name: ").write("Project #10000").expect("Limit of 9999 projects reached, wait until new year.");
 
 		// Sign out
