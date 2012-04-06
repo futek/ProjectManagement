@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 public class StartScreen extends MenuListScreen {
 	private static String[] OPTIONS = new String[] {
 			"Exit",
-			"Sign In"
+			"Sign in"
 	};
 
 	public StartScreen(ApplicationUI appUI) {
@@ -18,7 +18,7 @@ public class StartScreen extends MenuListScreen {
 			out.println("Exited.");
 			appUI.exit();
 			return;
-		} else if (option.equals("Sign In")) {
+		} else if (option.equals("Sign in")) {
 			appUI.setScreen(new SignInScreen(appUI));
 		}
 	}

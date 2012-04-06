@@ -14,7 +14,7 @@ public class TestBrowseProjects extends SampleDataSetupWithProjects {
 	@Test
 	public void testBrowseAllProjects() throws IOException {
 		// Sign in as an employee
-		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write("ABCD").expect("You signed in as \"Alpha Bravo Charlie Delta\".");
 
 		// Browse all projects
@@ -31,6 +31,6 @@ public class TestBrowseProjects extends SampleDataSetupWithProjects {
 		appUITester.selectOption("Exit").expectNothing();
 
 		// Sign out
-		appUITester.selectOption("Sign Out").expect("You signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 	}
 }

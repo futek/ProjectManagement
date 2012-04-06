@@ -4,8 +4,8 @@ import java.io.PrintWriter;
 
 public class AdminScreen extends MenuListScreen {
 	private static String[] OPTIONS = new String[] {
-			"Sign Out",
-			"Create Employee"
+			"Sign out",
+			"Create employee"
 	};
 
 	public AdminScreen(ApplicationUI appUI) {
@@ -14,11 +14,11 @@ public class AdminScreen extends MenuListScreen {
 
 	@Override
 	public void optionSelected(String option, PrintWriter out) {
-		if (option.equals("Sign Out")) {
+		if (option.equals("Sign out")) {
 			appUI.getApp().signOut();
 			out.println("You signed out.");
 			appUI.setScreen(new StartScreen(appUI));
-		} else if (option.equals("Create Employee")) {
+		} else if (option.equals("Create employee")) {
 			appUI.setScreen(new CreateEmployeeIdScreen(appUI));
 		}
 	}

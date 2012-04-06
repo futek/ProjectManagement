@@ -29,7 +29,7 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee with admin rights
-		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write("ZZZZ").expect("You signed in as \"Administrator\".");
 
 		// Check employee is signed in and is admin
@@ -39,7 +39,7 @@ public class TestCreateEmployee {
 		// Add new employee
 		String id = "ABCD";
 		String name = "Alpha Bravo Charlie Delta";
-		appUITester.selectOption("Create Employee").expectNothing();
+		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write(id).expectNothing();
 		appUITester.expect("New employee name: ").write(name).expectNothing();
 
@@ -50,7 +50,7 @@ public class TestCreateEmployee {
 		assertEquals(app.getEmployees().get(id).getName(), name);
 
 		// Sign out
-		appUITester.selectOption("Sign Out").expect("You signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
@@ -68,7 +68,7 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee with admin rights
-		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write("zzzz").expect("You signed in as \"Administrator\".");
 
 		// Check employee is signed in and is admin
@@ -78,7 +78,7 @@ public class TestCreateEmployee {
 		// Add new employee
 		String id1 = "ABCD";
 		String name1 = "Alpha Bravo Charlie Delta";
-		appUITester.selectOption("Create Employee").expectNothing();
+		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write(id1).expectNothing();
 		appUITester.expect("New employee name: ").write(name1).expectNothing();
 
@@ -89,14 +89,14 @@ public class TestCreateEmployee {
 		assertEquals(app.getEmployees().get(id1).getName(), name1);
 
 		// Add another employee with same id
-		appUITester.selectOption("Create Employee").expectNothing();
+		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write(id1).expect("Employee id taken.");
 
 		// Check employee not added
 		assertTrue(app.getEmployees().size() == 2);
 
 		// Sign out
-		appUITester.selectOption("Sign Out").expect("You signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());

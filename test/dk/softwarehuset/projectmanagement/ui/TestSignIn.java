@@ -27,7 +27,7 @@ public class TestSignIn {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee with admin rights
-		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write("ZZZZ").expect("You signed in as \"Administrator\".");
 
 		// Check employee is signed in and is admin
@@ -35,10 +35,10 @@ public class TestSignIn {
 		assertTrue(app.getCurrentEmployee().isAdmin());
 
 		// Wrong selection
-		appUITester.expectOption("Sign Out").write("999").expect("Invalid option selected.");
+		appUITester.expectOption("Sign out").write("999").expect("Invalid option selected.");
 
 		// Sign out
-		appUITester.selectOption("Sign Out").expect("You signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
@@ -61,7 +61,7 @@ public class TestSignIn {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee
-		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write(id).expect("You signed in as \"" + name + "\".");
 
 		// Check employee is signed in
@@ -69,10 +69,10 @@ public class TestSignIn {
 		assertFalse(app.getCurrentEmployee().isAdmin());
 
 		// Wrong selection
-		appUITester.expectOption("Sign Out").write("999").expect("Invalid option selected.");
+		appUITester.expectOption("Sign out").write("999").expect("Invalid option selected.");
 
 		// Sign out
-		appUITester.selectOption("Sign Out").expect("You signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
