@@ -5,14 +5,19 @@ import java.io.PrintWriter;
 import dk.softwarehuset.projectmanagement.app.Project;
 
 public class EditProjectNameScreen extends PromptScreen {
-	private static String PROMPT = "New project name";
+	private static final String TEXT = "New project name";
 
 	private Project project;
 
 	public EditProjectNameScreen(ApplicationUI appUI, Project project) {
-		super(appUI, PROMPT);
+		super(appUI);
 
 		this.project = project;
+	}
+
+	@Override
+	public String getText() {
+		return TEXT;
 	}
 
 	@Override

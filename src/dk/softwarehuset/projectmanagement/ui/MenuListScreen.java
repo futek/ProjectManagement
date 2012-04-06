@@ -5,19 +5,22 @@ import java.io.PrintWriter;
 public abstract class MenuListScreen extends Screen {
 	private String[] options;
 
-	public MenuListScreen(ApplicationUI appUI, String[] options) {
+	public MenuListScreen(ApplicationUI appUI) {
 		super(appUI);
-
-		this.options = options;
 	}
+
+	public abstract String[] getOptions();
 
 	@Override
 	public void print(PrintWriter out) {
-		for (int i = 0; i < options.length; i++) {
-			out.printf("%d) %s\n", i, options[i]);
+		options = getOptions();
+
+		int i = 0;
+		for (String option : options) {
+			out.printf("%d) %s%n", i++, option);
 		}
 
-		out.print("> ");
+		out.print("-> ");
 		out.flush();
 	}
 
@@ -31,13 +34,13 @@ public abstract class MenuListScreen extends Screen {
 		}
 
 		if (index >= 0 && index < options.length) {
-			optionSelected(options[index], out);
+			optionSelected(0, options[index], out);
 		} else {
 			invalidOptionSelected(out);
 		}
 	}
 
-	public void optionSelected(String option, PrintWriter out) {
+	public void optionSelected(int index, String option, PrintWriter out) {
 	}
 
 	public void invalidOptionSelected(PrintWriter out) {

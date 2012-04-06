@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import dk.softwarehuset.projectmanagement.app.Project;
 
 public class EditProjectPropertiesScreen extends MenuListScreen {
-	private static String[] OPTIONS = {
+	private static final String[] OPTIONS = {
 			"Exit",
 			"Edit name"
 	};
@@ -13,12 +13,18 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 	private Project project;
 
 	public EditProjectPropertiesScreen(ApplicationUI appUI, Project project) {
-		super(appUI, OPTIONS);
+		super(appUI);
+
 		this.project = project;
 	}
 
 	@Override
-	public void optionSelected(String option, PrintWriter out) {
+	public String[] getOptions() {
+		return OPTIONS;
+	}
+
+	@Override
+	public void optionSelected(int index, String option, PrintWriter out) {
 		if (option.equals("Exit")) {
 			appUI.setScreen(new EmployeeScreen(appUI));
 		} else if (option.equals("Edit name")) {

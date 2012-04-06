@@ -3,17 +3,22 @@ package dk.softwarehuset.projectmanagement.ui;
 import java.io.PrintWriter;
 
 public class StartScreen extends MenuListScreen {
-	private static String[] OPTIONS = new String[] {
+	private static final String[] OPTIONS = new String[] {
 			"Exit",
 			"Sign in"
 	};
 
 	public StartScreen(ApplicationUI appUI) {
-		super(appUI, OPTIONS);
+		super(appUI);
 	}
 
 	@Override
-	public void optionSelected(String option, PrintWriter out) {
+	public String[] getOptions() {
+		return OPTIONS;
+	}
+
+	@Override
+	public void optionSelected(int index, String option, PrintWriter out) {
 		if (option.equals("Exit")) {
 			out.println("Exited.");
 			appUI.exit();

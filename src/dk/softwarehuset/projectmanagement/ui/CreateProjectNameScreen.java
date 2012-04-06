@@ -7,10 +7,15 @@ import dk.softwarehuset.projectmanagement.app.Project;
 import dk.softwarehuset.projectmanagement.app.TooManyProjectsException;
 
 public class CreateProjectNameScreen extends PromptScreen {
-	private static String PROMPT = "New project name";
+	private static final String TEXT = "New project name";
 
 	public CreateProjectNameScreen(ApplicationUI appUI) {
-		super(appUI, PROMPT);
+		super(appUI);
+	}
+
+	@Override
+	public String getText() {
+		return TEXT;
 	}
 
 	@Override

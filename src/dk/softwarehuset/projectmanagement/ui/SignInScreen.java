@@ -6,10 +6,15 @@ import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
 
 public class SignInScreen extends PromptScreen {
-	private static String PROMPT = "Employee id";
+	private static final String TEXT = "Employee id";
 
 	public SignInScreen(ApplicationUI appUI) {
-		super(appUI, PROMPT);
+		super(appUI);
+	}
+
+	@Override
+	public String getText() {
+		return TEXT;
 	}
 
 	@Override

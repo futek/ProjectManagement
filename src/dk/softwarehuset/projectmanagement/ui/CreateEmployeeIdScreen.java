@@ -3,10 +3,15 @@ package dk.softwarehuset.projectmanagement.ui;
 import java.io.PrintWriter;
 
 public class CreateEmployeeIdScreen extends PromptScreen {
-	private static String PROMPT = "New employee id";
+	private static final String TEXT = "New employee id";
 
 	public CreateEmployeeIdScreen(ApplicationUI appUI) {
-		super(appUI, PROMPT);
+		super(appUI);
+	}
+
+	@Override
+	public String getText() {
+		return TEXT;
 	}
 
 	@Override

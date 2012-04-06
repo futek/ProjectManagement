@@ -3,17 +3,17 @@ package dk.softwarehuset.projectmanagement.ui;
 import java.io.PrintWriter;
 
 public abstract class PromptScreen extends Screen {
-	private String prompt;
-
-	public PromptScreen(ApplicationUI appUI, String prompt) {
+	public PromptScreen(ApplicationUI appUI) {
 		super(appUI);
-
-		this.prompt = prompt;
 	}
+
+	public abstract String getText();
 
 	@Override
 	public void print(PrintWriter out) {
-		out.printf("%s: ", prompt);
+		String text = getText();
+
+		out.printf("%s: ", text);
 		out.flush();
 	}
 }

@@ -7,14 +7,19 @@ import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 
 public class CreateEmployeeNameScreen extends PromptScreen {
-	private static String PROMPT = "New employee name";
+	private static final String TEXT = "New employee name";
 
 	private String id;
 
 	public CreateEmployeeNameScreen(ApplicationUI appUI, String id) {
-		super(appUI, PROMPT);
+		super(appUI);
 
 		this.id = id;
+	}
+
+	@Override
+	public String getText() {
+		return TEXT;
 	}
 
 	@Override
