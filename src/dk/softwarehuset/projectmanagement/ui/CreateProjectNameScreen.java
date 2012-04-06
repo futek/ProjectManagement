@@ -20,7 +20,7 @@ public class CreateProjectNameScreen extends PromptScreen {
 		Project project = new Project(name);
 
 		try {
-			appUI.getApplication().addProject(project);
+			appUI.getApp().addProject(project);
 		} catch (TooManyProjectsException e) {
 			out.println(e.getMessage() + ".");
 			appUI.setScreen(new EmployeeScreen(appUI));

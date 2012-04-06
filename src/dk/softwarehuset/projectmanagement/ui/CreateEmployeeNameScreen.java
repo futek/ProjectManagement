@@ -24,7 +24,7 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 		Employee employee = new Employee(id, name);
 
 		try {
-			appUI.getApplication().addEmployee(employee);
+			appUI.getApp().addEmployee(employee);
 		} catch (NonUniqueIdentifierException e) {
 			out.println("Employee id taken.");
 			appUI.setScreen(new AdminScreen(appUI));

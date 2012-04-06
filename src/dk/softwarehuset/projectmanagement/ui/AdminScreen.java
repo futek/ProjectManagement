@@ -15,7 +15,7 @@ public class AdminScreen extends MenuListScreen {
 	@Override
 	public boolean optionSelected(String option, PrintWriter out) {
 		if (option.equals("Sign Out")) {
-			appUI.getApplication().signOut();
+			appUI.getApp().signOut();
 			out.println("You signed out.");
 			appUI.setScreen(new StartScreen(appUI));
 		} else if (option.equals("Create Employee")) {

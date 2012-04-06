@@ -14,12 +14,11 @@ public class TestExit {
 
 	@Test
 	public void testExit() throws IOException {
-		appUITester.selectOption("Exit", "Exited.", true);
+		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
 	@Test
 	public void testExitFailWrongOption() throws IOException {
-		appUITester.assertOptionExists("Exit");
-		appUITester.input("999", "Invalid option selected.");
+		appUITester.expectOption("Exit").write("999").expect("Invalid option selected.");
 	}
 }

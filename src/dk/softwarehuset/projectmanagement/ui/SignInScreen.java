@@ -17,14 +17,14 @@ public class SignInScreen extends PromptScreen {
 		String id = input.trim().toUpperCase();
 
 		try {
-			appUI.getApplication().signIn(id);
+			appUI.getApp().signIn(id);
 		} catch (WrongCredentialsException e) {
 			out.println("Wrong credentials.");
 			appUI.setScreen(new StartScreen(appUI));
 			return false;
 		}
 
-		Employee currentEmployee = appUI.getApplication().getCurrentEmployee();
+		Employee currentEmployee = appUI.getApp().getCurrentEmployee();
 
 		if (currentEmployee.isAdmin()) {
 			appUI.setScreen(new AdminScreen(appUI));

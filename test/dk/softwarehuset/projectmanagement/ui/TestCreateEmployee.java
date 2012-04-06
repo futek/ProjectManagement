@@ -29,8 +29,8 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee with admin rights
-		appUITester.selectOption("Sign In");
-		appUITester.promptInput("Employee id: ", "zzzz", "You signed in as \"Administrator\".");
+		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.expect("Employee id: ").write("ZZZZ").expect("You signed in as \"Administrator\".");
 
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
@@ -39,9 +39,9 @@ public class TestCreateEmployee {
 		// Add new employee
 		String id = "ABCD";
 		String name = "Alpha Bravo Charlie Delta";
-		appUITester.selectOption("Create Employee");
-		appUITester.promptInput("New employee id: ", id);
-		appUITester.promptInput("New employee name: ", name);
+		appUITester.selectOption("Create Employee").expectNothing();
+		appUITester.expect("New employee id: ").write(id).expectNothing();
+		appUITester.expect("New employee name: ").write(name).expectNothing();
 
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
@@ -50,13 +50,13 @@ public class TestCreateEmployee {
 		assertEquals(app.getEmployees().get(id).getName(), name);
 
 		// Sign out
-		appUITester.selectOption("Sign Out", "You signed out.");
+		appUITester.selectOption("Sign Out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
 		// Exit
-		appUITester.selectOption("Exit", "Exited.", true);
+		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
 	@Test
@@ -68,8 +68,8 @@ public class TestCreateEmployee {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee with admin rights
-		appUITester.selectOption("Sign In");
-		appUITester.promptInput("Employee id: ", "zzzz", "You signed in as \"Administrator\".");
+		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.expect("Employee id: ").write("zzzz").expect("You signed in as \"Administrator\".");
 
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
@@ -78,9 +78,9 @@ public class TestCreateEmployee {
 		// Add new employee
 		String id1 = "ABCD";
 		String name1 = "Alpha Bravo Charlie Delta";
-		appUITester.selectOption("Create Employee");
-		appUITester.promptInput("New employee id: ", id1);
-		appUITester.promptInput("New employee name: ", name1);
+		appUITester.selectOption("Create Employee").expectNothing();
+		appUITester.expect("New employee id: ").write(id1).expectNothing();
+		appUITester.expect("New employee name: ").write(name1).expectNothing();
 
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
@@ -89,19 +89,19 @@ public class TestCreateEmployee {
 		assertEquals(app.getEmployees().get(id1).getName(), name1);
 
 		// Add another employee with same id
-		appUITester.selectOption("Create Employee");
-		appUITester.promptInput("New employee id: ", id1, "Employee id taken.");
+		appUITester.selectOption("Create Employee").expectNothing();
+		appUITester.expect("New employee id: ").write(id1).expect("Employee id taken.");
 
 		// Check employee not added
 		assertTrue(app.getEmployees().size() == 2);
 
 		// Sign out
-		appUITester.selectOption("Sign Out", "You signed out.");
+		appUITester.selectOption("Sign Out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
 		// Exit
-		appUITester.selectOption("Exit", "Exited.", true);
+		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 }

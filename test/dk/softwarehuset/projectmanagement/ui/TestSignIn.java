@@ -27,25 +27,24 @@ public class TestSignIn {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee with admin rights
-		appUITester.selectOption("Sign In");
-		appUITester.promptInput("Employee id: ", "zzzz", "You signed in as \"Administrator\".");
+		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.expect("Employee id: ").write("ZZZZ").expect("You signed in as \"Administrator\".");
 
 		// Check employee is signed in and is admin
 		assertNotNull(app.getCurrentEmployee());
 		assertTrue(app.getCurrentEmployee().isAdmin());
 
 		// Wrong selection
-		appUITester.assertOptionExists("Sign Out");
-		appUITester.input("999", "Invalid option selected.");
+		appUITester.expectOption("Sign Out").write("999").expect("Invalid option selected.");
 
 		// Sign out
-		appUITester.selectOption("Sign Out", "You signed out.");
+		appUITester.selectOption("Sign Out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
 		// Exit
-		appUITester.selectOption("Exit", "Exited.", true);
+		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
 	@Test
@@ -62,24 +61,23 @@ public class TestSignIn {
 		assertNull(app.getCurrentEmployee());
 
 		// Sign in as an employee
-		appUITester.selectOption("Sign In");
-		appUITester.promptInput("Employee id: ", id, "You signed in as \"" + name + "\".");
+		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.expect("Employee id: ").write(id).expect("You signed in as \"" + name + "\".");
 
 		// Check employee is signed in
 		assertNotNull(app.getCurrentEmployee());
 		assertFalse(app.getCurrentEmployee().isAdmin());
 
 		// Wrong selection
-		appUITester.assertOptionExists("Sign Out");
-		appUITester.input("999", "Invalid option selected.");
+		appUITester.expectOption("Sign Out").write("999").expect("Invalid option selected.");
 
 		// Sign out
-		appUITester.selectOption("Sign Out", "You signed out.");
+		appUITester.selectOption("Sign Out").expect("You signed out.");
 
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
 		// Exit
-		appUITester.selectOption("Exit", "Exited.", true);
+		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 }

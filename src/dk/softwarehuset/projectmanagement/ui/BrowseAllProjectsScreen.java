@@ -9,7 +9,7 @@ import dk.softwarehuset.projectmanagement.app.Project;
 
 public class BrowseAllProjectsScreen extends Screen {
 	private static String generateMenu(ApplicationUI appUI) {
-		Collection<Project> projects = appUI.getApplication().getProjects().values();
+		Collection<Project> projects = appUI.getApp().getProjects().values();
 		String menu = "0) Exit\n";
 
 		int i = 1;

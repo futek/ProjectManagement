@@ -9,22 +9,22 @@ import dk.softwarehuset.projectmanagement.app.Application;
 
 public class ApplicationUI {
 	private Application app;
+	private boolean running;
 	private Screen currentScreen;
-	
+
 	public ApplicationUI(Application app) {
 		this.app = app;
+
 		setScreen(new StartScreen(this));
+
+		running = true;
 	}
 
-	public Application getApplication() {
-		return app;
-	}
-	
 	public void setScreen(Screen screen) {
 		currentScreen = screen;
 	}
-	
-	public void printMenu(PrintWriter out) {
+
+	public void render(PrintWriter out) {
 		currentScreen.print(out);
 	}
 
@@ -32,22 +32,38 @@ public class ApplicationUI {
 		return in.readLine();
 	}
 
-	public boolean processInput(String input, PrintWriter out) {
-		return currentScreen.processInput(input, out);
+	public void processInput(String input, PrintWriter out) {
+		currentScreen.processInput(input, out);
 	}
-	
+
+	public void run() throws IOException {
+		running = true;
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter out = new PrintWriter(System.out, true);
+
+		while (running) {
+			render(out);
+			processInput(readInput(in), out);
+		}
+	}
+
+	public Application getApp() {
+		return app;
+	}
+
+	public void exit() {
+		running = false;
+	}
+
+	public boolean isRunning() {
+		return running;
+	}
+
 	public static void main(String[] args) throws IOException {
 		Application app = new Application();
 		ApplicationUI appUI = new ApplicationUI(app);
-		
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		PrintWriter out = new PrintWriter(System.out, true);
-		
-		String selection;
-		
-		do {
-			appUI.printMenu(out);
-			selection = appUI.readInput(in);
-		} while (!appUI.processInput(selection, out));
+
+		appUI.run();
 	}
 }

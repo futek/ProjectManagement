@@ -13,7 +13,7 @@ public class CreateEmployeeIdScreen extends PromptScreen {
 	public boolean processInput(String input, PrintWriter out) {
 		String id = input.trim().toUpperCase();
 
-		if (appUI.getApplication().getEmployees().containsKey(id)) {
+		if (appUI.getApp().getEmployees().containsKey(id)) {
 			out.println("Employee id taken.");
 			appUI.setScreen(new AdminScreen(appUI));
 			return false;

@@ -14,23 +14,23 @@ public class TestBrowseProjects extends SampleDataSetupWithProjects {
 	@Test
 	public void testBrowseAllProjects() throws IOException {
 		// Sign in as an employee
-		appUITester.selectOption("Sign In");
-		appUITester.promptInput("Employee id: ", "abcd", "You signed in as \"Alpha Bravo Charlie Delta\".");
+		appUITester.selectOption("Sign In").expectNothing();
+		appUITester.expect("Employee id: ").write("ABCD").expect("You signed in as \"Alpha Bravo Charlie Delta\".");
 
 		// Browse all projects
-		appUITester.selectOption("Browse all projects");
+		appUITester.selectOption("Browse all projects").expectNothing();
 
 		// Check projects exist
-		appUITester.assertOptionExists("Hello World!");
-		appUITester.assertOptionExists("Goodbye World!");
-		appUITester.assertOptionExists("Good morning World!");
-		appUITester.assertOptionExists("Good afternoon World!");
-		appUITester.assertOptionExists("Good evening World!");
+		appUITester.expectOption("Hello World!");
+		appUITester.expectOption("Goodbye World!");
+		appUITester.expectOption("Good morning World!");
+		appUITester.expectOption("Good afternoon World!");
+		appUITester.expectOption("Good evening World!");
 
 		// Exit menu
-		appUITester.selectOption("Exit");
+		appUITester.selectOption("Exit").expectNothing();
 
 		// Sign out
-		appUITester.selectOption("Sign Out", "You signed out.");
+		appUITester.selectOption("Sign Out").expect("You signed out.");
 	}
 }
