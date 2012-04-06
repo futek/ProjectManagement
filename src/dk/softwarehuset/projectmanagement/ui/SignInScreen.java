@@ -13,7 +13,7 @@ public class SignInScreen extends PromptScreen {
 	}
 
 	@Override
-	public boolean processInput(String input, PrintWriter out) {
+	public void processInput(String input, PrintWriter out) {
 		String id = input.trim().toUpperCase();
 
 		try {
@@ -21,7 +21,7 @@ public class SignInScreen extends PromptScreen {
 		} catch (WrongCredentialsException e) {
 			out.println("Wrong credentials.");
 			appUI.setScreen(new StartScreen(appUI));
-			return false;
+			return;
 		}
 
 		Employee currentEmployee = appUI.getApp().getCurrentEmployee();
@@ -33,7 +33,5 @@ public class SignInScreen extends PromptScreen {
 		}
 
 		out.println("You signed in as \"" + currentEmployee.getName() + "\".");
-
-		return false;
 	}
 }

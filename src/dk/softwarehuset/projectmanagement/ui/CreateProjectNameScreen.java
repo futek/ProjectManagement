@@ -14,7 +14,7 @@ public class CreateProjectNameScreen extends PromptScreen {
 	}
 
 	@Override
-	public boolean processInput(String input, PrintWriter out) {
+	public void processInput(String input, PrintWriter out) {
 		String name = input.trim();
 
 		Project project = new Project(name);
@@ -24,16 +24,14 @@ public class CreateProjectNameScreen extends PromptScreen {
 		} catch (TooManyProjectsException e) {
 			out.println(e.getMessage() + ".");
 			appUI.setScreen(new EmployeeScreen(appUI));
-			return false;
+			return;
 		} catch (PermissionDeniedException e) {
 			out.println("Not signed in.");
 			appUI.setScreen(new StartScreen(appUI));
-			return false;
+			return;
 		}
 
 		out.printf("Project \"%s\" created.\n", project.getName());
 		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
-
-		return false;
 	}
 }

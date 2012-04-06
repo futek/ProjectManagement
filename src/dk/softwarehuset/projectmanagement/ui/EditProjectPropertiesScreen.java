@@ -6,8 +6,8 @@ import dk.softwarehuset.projectmanagement.app.Project;
 
 public class EditProjectPropertiesScreen extends MenuListScreen {
 	private static String[] OPTIONS = {
-		"Exit",
-		"Edit name"
+			"Exit",
+			"Edit name"
 	};
 
 	private Project project;
@@ -18,13 +18,11 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 	}
 
 	@Override
-	public boolean optionSelected(String option, PrintWriter out) {
+	public void optionSelected(String option, PrintWriter out) {
 		if (option.equals("Exit")) {
 			appUI.setScreen(new EmployeeScreen(appUI));
 		} else if (option.equals("Edit name")) {
 			appUI.setScreen(new EditProjectNameScreen(appUI, project));
 		}
-
-		return false;
 	}
 }

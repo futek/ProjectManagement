@@ -22,7 +22,7 @@ public abstract class MenuListScreen extends Screen {
 	}
 
 	@Override
-	public boolean processInput(String input, PrintWriter out) {
+	public void processInput(String input, PrintWriter out) {
 		int index = -1;
 
 		try {
@@ -30,19 +30,17 @@ public abstract class MenuListScreen extends Screen {
 		} catch (NumberFormatException e) {
 		}
 
-		if (index < 0 || index >= options.length) {
-			return invalidOptionSelected(out);
+		if (index >= 0 && index < options.length) {
+			optionSelected(options[index], out);
+		} else {
+			invalidOptionSelected(out);
 		}
-
-		return optionSelected(options[index], out);
 	}
 
-	public boolean optionSelected(String option, PrintWriter out) {
-		return false;
+	public void optionSelected(String option, PrintWriter out) {
 	}
 
-	public boolean invalidOptionSelected(PrintWriter out) {
+	public void invalidOptionSelected(PrintWriter out) {
 		out.println("Invalid option selected.");
-		return false;
 	}
 }

@@ -14,7 +14,7 @@ public class EmployeeScreen extends MenuListScreen {
 	}
 
 	@Override
-	public boolean optionSelected(String option, PrintWriter out) {
+	public void optionSelected(String option, PrintWriter out) {
 		if (option.equals("Sign Out")) {
 			appUI.getApp().signOut();
 			out.println("You signed out.");
@@ -24,7 +24,5 @@ public class EmployeeScreen extends MenuListScreen {
 		} else if (option.equals("Browse all projects")) {
 			appUI.setScreen(new BrowseAllProjectsScreen(appUI));
 		}
-
-		return false;
 	}
 }

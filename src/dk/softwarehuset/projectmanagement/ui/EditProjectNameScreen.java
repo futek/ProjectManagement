@@ -22,12 +22,10 @@ public class EditProjectNameScreen extends PromptScreen {
 	}
 
 	@Override
-	public boolean processInput(String input, PrintWriter out) {
+	public void processInput(String input, PrintWriter out) {
 		String name = input.trim();
 		project.setName(name);
 
 		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
-
-		return false;
 	}
 }

@@ -18,7 +18,7 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 	}
 
 	@Override
-	public boolean processInput(String input, PrintWriter out) {
+	public void processInput(String input, PrintWriter out) {
 		String name = input.trim();
 
 		Employee employee = new Employee(id, name);
@@ -28,15 +28,13 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 		} catch (NonUniqueIdentifierException e) {
 			out.println("Employee id taken.");
 			appUI.setScreen(new AdminScreen(appUI));
-			return false;
+			return;
 		} catch (PermissionDeniedException e) {
 			out.println("Not admin.");
 			appUI.setScreen(new StartScreen(appUI));
-			return false;
+			return;
 		}
 
 		appUI.setScreen(new AdminScreen(appUI));
-
-		return false;
 	}
 }

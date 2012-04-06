@@ -10,5 +10,5 @@ public abstract class Screen {
 	}
 	
 	public abstract void print(PrintWriter out);
-	public abstract boolean processInput(String input, PrintWriter out);
+	public abstract void processInput(String input, PrintWriter out);
 }

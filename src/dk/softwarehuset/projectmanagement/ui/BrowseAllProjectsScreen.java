@@ -34,11 +34,9 @@ public class BrowseAllProjectsScreen extends Screen {
 	}
 
 	@Override
-	public boolean processInput(String input, PrintWriter out) {
+	public void processInput(String input, PrintWriter out) {
 		if (input.equals("0")) {
 			appUI.setScreen(new EmployeeScreen(appUI));
 		}
-
-		return false;
 	}
 }
