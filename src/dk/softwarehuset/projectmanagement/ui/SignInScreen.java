@@ -31,11 +31,7 @@ public class SignInScreen extends PromptScreen {
 
 		Employee currentEmployee = appUI.getApp().getCurrentEmployee();
 
-		if (currentEmployee.isAdmin()) {
-			appUI.setScreen(new AdminScreen(appUI));
-		} else {
-			appUI.setScreen(new EmployeeScreen(appUI));
-		}
+		appUI.setScreen(new MainScreen(appUI));
 
 		out.println("You signed in as \"" + currentEmployee.getName() + "\".");
 	}

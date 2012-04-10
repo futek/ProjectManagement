@@ -36,7 +36,7 @@ public class BrowseAllProjectsScreen extends Screen {
 	@Override
 	public void processInput(String input, PrintWriter out) {
 		if (input.equals("0")) {
-			appUI.setScreen(new EmployeeScreen(appUI));
+			appUI.setScreen(new MainScreen(appUI));
 		}
 	}
 }

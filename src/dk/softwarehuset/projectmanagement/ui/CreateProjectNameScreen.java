@@ -28,7 +28,7 @@ public class CreateProjectNameScreen extends PromptScreen {
 			appUI.getApp().addProject(project);
 		} catch (TooManyProjectsException e) {
 			out.println(e.getMessage() + ".");
-			appUI.setScreen(new EmployeeScreen(appUI));
+			appUI.setScreen(new MainScreen(appUI));
 			return;
 		} catch (PermissionDeniedException e) {
 			out.println("Not signed in.");

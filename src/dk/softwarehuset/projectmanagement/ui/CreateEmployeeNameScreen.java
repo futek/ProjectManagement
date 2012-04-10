@@ -32,7 +32,7 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 			appUI.getApp().addEmployee(employee);
 		} catch (NonUniqueIdentifierException e) {
 			out.println("Employee id taken.");
-			appUI.setScreen(new AdminScreen(appUI));
+			appUI.setScreen(new MainScreen(appUI));
 			return;
 		} catch (PermissionDeniedException e) {
 			out.println("Not admin.");
@@ -40,6 +40,6 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 			return;
 		}
 
-		appUI.setScreen(new AdminScreen(appUI));
+		appUI.setScreen(new MainScreen(appUI));
 	}
 }

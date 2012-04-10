@@ -20,7 +20,7 @@ public class CreateEmployeeIdScreen extends PromptScreen {
 
 		if (appUI.getApp().getEmployees().containsKey(id)) {
 			out.println("Employee id taken.");
-			appUI.setScreen(new AdminScreen(appUI));
+			appUI.setScreen(new MainScreen(appUI));
 			return;
 		}
 

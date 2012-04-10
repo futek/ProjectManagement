@@ -26,7 +26,7 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 	@Override
 	public void optionSelected(int index, String option, PrintWriter out) {
 		if (option.equals("Exit")) {
-			appUI.setScreen(new EmployeeScreen(appUI));
+			appUI.setScreen(new MainScreen(appUI));
 		} else if (option.equals("Edit name")) {
 			appUI.setScreen(new EditProjectNameScreen(appUI, project));
 		}
