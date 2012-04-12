@@ -1,88 +1,125 @@
 package dk.softwarehuset.projectmanagement.app;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Application {
-	private Map<String, Employee> employees = new HashMap<String, Employee>();
-	private Map<String, Project> projects = new HashMap<String, Project>();
+	private List<Employee> employees = new ArrayList<Employee>();
+	private List<Project> projects = new ArrayList<Project>();
+	private int annualProjectCounter = 0;
+	private int yearOfLatestProject = 0;
 	private Employee currentEmployee;
 	private DateServer dateServer = new DateServer();
-	private int projectIdCounter;// = 1;
-	private int yearOfLastProject = 0;
 
 	public Application() {
 		Admin admin = new Admin("ZZZZ", "Administrator");
-		employees.put(admin.getId(), admin);
+		employees.add(admin);
 	}
-	
-	public Employee getCurrentEmployee() {
-		return currentEmployee;
+
+	public List<Employee> getEmployees() {
+		return Collections.unmodifiableList(employees);
+	}
+
+	public List<Project> getProjects() {
+		return Collections.unmodifiableList(projects);
+	}
+
+	public Employee createEmployee(String id, String name) throws NonUniqueIdentifierException, PermissionDeniedException {
+		if (currentEmployee == null) {
+			throw new PermissionDeniedException("Not signed in");
+		}
+
+		if (!currentEmployee.isAdmin()) {
+			throw new PermissionDeniedException("Not admin");
+		}
+
+		id = id.toUpperCase();
+
+		for (Employee employee : employees) {
+			if (id.equals(employee.getId())) {
+				throw new NonUniqueIdentifierException("Duplicate employee id");
+			}
+		}
+
+		Employee employee = new Employee(id, name);
+
+		employees.add(employee);
+
+		return employee;
+	}
+
+	public Project createProject(String name) throws TooManyProjectsException, PermissionDeniedException {
+		if (currentEmployee == null) {
+			throw new PermissionDeniedException("Not signed in");
+		}
+
+		int currentYear = dateServer.getDate().get(Calendar.YEAR);
+
+		if (yearOfLatestProject != currentYear) {
+			annualProjectCounter = 0;
+		}
+
+		if (annualProjectCounter >= 9999) {
+			throw new TooManyProjectsException("Limit of 9999 projects reached, wait until new year");
+		}
+
+		annualProjectCounter++;
+
+		String id = String.format("%02d%04d", currentYear % 100, annualProjectCounter);
+		Project project = new Project(id, name);
+
+		projects.add(project);
+
+		yearOfLatestProject = currentYear;
+
+		return project;
 	}
 
 	public void signIn(String id) throws WrongCredentialsException {
-		if (!employees.containsKey(id)) {
-			throw new WrongCredentialsException("No employee with that identifier");
+		id = id.toUpperCase();
+
+		for (Employee employee : employees) {
+			if (id.equals(employee.getId())) {
+				currentEmployee = employee;
+
+				return;
+			}
 		}
-		
-		currentEmployee = employees.get(id);
+
+		throw new WrongCredentialsException("Wrong id");
 	}
 
 	public void signOut() {
 		currentEmployee = null;
 	}
 
-	public Map<String, Employee> getEmployees() {
-		return Collections.unmodifiableMap(employees);
+	public Employee getCurrentEmployee() {
+		return currentEmployee;
 	}
 
-	public void addEmployee(Employee employee) throws PermissionDeniedException, NonUniqueIdentifierException {
-		if (getCurrentEmployee() == null) {
-			throw new PermissionDeniedException("Not signed in");
+	public Employee getEmployeeById(String id) {
+		for (Employee employee : employees) {
+			if (id.equals(employee.getId())) {
+				return employee;
+			}
 		}
-		
-		if (!getCurrentEmployee().isAdmin()) {
-			throw new PermissionDeniedException("Not admin");
-		}
-		
-		if (employees.containsKey(employee.getId())) {
-			throw new NonUniqueIdentifierException("Employee id not unique");
-		}
-		
-		employees.put(employee.getId(), employee);
+
+		return null;
 	}
 
-	public void addProject(Project project) throws PermissionDeniedException, TooManyProjectsException {
-		if (getCurrentEmployee() == null) {
-			throw new PermissionDeniedException("Not signed in");
+	public Project getProjectById(String id) {
+		for (Project project : projects) {
+			if (id.equals(project.getId())) {
+				return project;
+			}
 		}
-		
-		if (projectIdCounter > 9999) {
-			throw new TooManyProjectsException("Limit of 9999 projects reached, wait until new year");
-		}
-		
-		int currentYear = dateServer.getDate().get(Calendar.YEAR);
-		
-		if (yearOfLastProject != currentYear) {
-			projectIdCounter = 1;
-		}
-		
-		String id = String.format("%d%04d", currentYear % 100, projectIdCounter);
-		
-		projects.put(id, project);
-		
-		projectIdCounter++;
-		yearOfLastProject = currentYear;
-	}
-	
-	public Map<String, Project> getProjects() {
-		return Collections.unmodifiableMap(projects);
+
+		return null;
 	}
 
 	public void setDateServer(DateServer dateServer) {
-		this.dateServer = new DateServer();
-		
+		this.dateServer = dateServer;
 	}
 }

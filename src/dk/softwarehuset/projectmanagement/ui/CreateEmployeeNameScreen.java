@@ -2,7 +2,6 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
-import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 
@@ -26,10 +25,8 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 	public void processInput(String input, PrintWriter out) {
 		String name = input.trim();
 
-		Employee employee = new Employee(id, name);
-
 		try {
-			appUI.getApp().addEmployee(employee);
+			appUI.getApp().createEmployee(id, name);
 		} catch (NonUniqueIdentifierException e) {
 			out.println("Employee id taken.");
 			appUI.setScreen(new MainScreen(appUI));

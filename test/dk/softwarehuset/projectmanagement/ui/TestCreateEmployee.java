@@ -45,9 +45,9 @@ public class TestCreateEmployee {
 
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
-		assertTrue(app.getEmployees().containsKey(id));
-		assertEquals(app.getEmployees().get(id).getId(), id);
-		assertEquals(app.getEmployees().get(id).getName(), name);
+		assertNotNull(app.getEmployeeById(id));
+		assertEquals(app.getEmployeeById(id).getId(), id);
+		assertEquals(app.getEmployeeById(id).getName(), name);
 
 		// Sign out
 		appUITester.selectOption("Sign out").expect("You signed out.");
@@ -84,9 +84,9 @@ public class TestCreateEmployee {
 
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
-		assertTrue(app.getEmployees().containsKey(id1));
-		assertEquals(app.getEmployees().get(id1).getId(), id1);
-		assertEquals(app.getEmployees().get(id1).getName(), name1);
+		assertNotNull(app.getEmployeeById(id1));
+		assertEquals(app.getEmployeeById(id1).getId(), id1);
+		assertEquals(app.getEmployeeById(id1).getName(), name1);
 
 		// Add another employee with same id
 		appUITester.selectOption("Create employee").expectNothing();

@@ -2,6 +2,8 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
+import dk.softwarehuset.projectmanagement.app.Project;
+
 public class MainScreen extends MenuListScreen {
 	private static final String[] BASE_OPTIONS = new String[] {
 			"Sign out",
@@ -47,7 +49,15 @@ public class MainScreen extends MenuListScreen {
 		} else if (option.equals("Create project")) {
 			appUI.setScreen(new CreateProjectNameScreen(appUI));
 		} else if (option.equals("Browse all projects")) {
-			appUI.setScreen(new BrowseAllProjectsScreen(appUI));
+			Screen selectProjectDialog = new SelectProjectDialog(appUI, this, new Callback<Project>() {
+				@Override
+				public void callback(Screen source, PrintWriter out, Project project) {
+					// setScreen(new ViewProjectScreen(appUI, selectProjectDialog,
+					// project));
+				}
+			});
+
+			appUI.setScreen(selectProjectDialog);
 		} else if (option.equals("Create employee")) {
 			appUI.setScreen(new CreateEmployeeIdScreen(appUI));
 		}

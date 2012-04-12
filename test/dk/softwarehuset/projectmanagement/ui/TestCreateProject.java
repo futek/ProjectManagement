@@ -42,7 +42,7 @@ public class TestCreateProject extends SampleDataSetup {
 
 		// Check project exists
 		assertEquals(1, app.getProjects().size());
-		assertEquals(name, app.getProjects().get("120001").getName());
+		assertEquals(name, app.getProjectById("120001").getName());
 
 		// Exit edit project properties screen
 		appUITester.selectOption("Exit").expectNothing();

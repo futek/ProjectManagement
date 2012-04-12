@@ -22,16 +22,16 @@ public class CreateProjectNameScreen extends PromptScreen {
 	public void processInput(String input, PrintWriter out) {
 		String name = input.trim();
 
-		Project project = new Project(name);
+		Project project = null;
 
 		try {
-			appUI.getApp().addProject(project);
+			project = appUI.getApp().createProject(name);
 		} catch (TooManyProjectsException e) {
 			out.println(e.getMessage() + ".");
 			appUI.setScreen(new MainScreen(appUI));
 			return;
 		} catch (PermissionDeniedException e) {
-			out.println("Not signed in.");
+			out.println(e.getMessage() + ".");
 			appUI.setScreen(new StartScreen(appUI));
 			return;
 		}

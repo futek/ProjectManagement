@@ -29,12 +29,10 @@ public class TestCreateProject extends SampleDataSetup {
 
 		// Add new project
 		String name = "Hello World";
-		Project project = new Project(name);
-		app.addProject(project);
+		app.createProject(name);
 
 		// Check project exists
-		assertEquals(1, app.getProjects().size());
-		assertEquals(project, app.getProjects().get("120001"));
+		assertNotNull(app.getProjectById("120001"));
 
 		// Sign out
 		app.signOut();
@@ -62,12 +60,10 @@ public class TestCreateProject extends SampleDataSetup {
 
 		// Add 9999 projects
 		for (int i = 1; i <= 9999; i++) {
-			Project project = new Project("Project #" + i);
-			app.addProject(project);
+			app.createProject("Project #" + i);
 		}
 
 		// Attempt to add the 10000th project
-		Project project = new Project("Project #10000");
-		app.addProject(project);
+		app.createProject("Project #10000");
 	}
 }

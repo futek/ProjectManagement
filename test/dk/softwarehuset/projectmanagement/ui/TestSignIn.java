@@ -10,7 +10,6 @@ import java.io.IOException;
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.app.Application;
-import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
@@ -53,8 +52,7 @@ public class TestSignIn {
 		app.signIn("ZZZZ");
 		String id = "ABCD";
 		String name = "Alpha Bravo Charlie Delta";
-		Employee employee = new Employee(id, name);
-		app.addEmployee(employee);
+		app.createEmployee(id, name);
 		app.signOut();
 
 		// Check nobody is signed in

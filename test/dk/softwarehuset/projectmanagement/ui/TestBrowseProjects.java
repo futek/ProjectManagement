@@ -21,14 +21,14 @@ public class TestBrowseProjects extends SampleDataSetupWithProjects {
 		appUITester.selectOption("Browse all projects").expectNothing();
 
 		// Check projects exist
-		appUITester.expectOption("Hello World!");
-		appUITester.expectOption("Goodbye World!");
-		appUITester.expectOption("Good morning World!");
-		appUITester.expectOption("Good afternoon World!");
-		appUITester.expectOption("Good evening World!");
+		appUITester.expectOption("[120001] Hello World!");
+		appUITester.expectOption("[120002] Goodbye World!");
+		appUITester.expectOption("[120003] Good morning World!");
+		appUITester.expectOption("[120004] Good afternoon World!");
+		appUITester.expectOption("[120005] Good evening World!");
 
 		// Exit menu
-		appUITester.selectOption("Exit").expectNothing();
+		appUITester.selectOption("Back").expectNothing();
 
 		// Sign out
 		appUITester.selectOption("Sign out").expect("You signed out.");
