@@ -52,8 +52,7 @@ public class MainScreen extends MenuListScreen {
 			Screen selectProjectDialog = new SelectProjectDialog(appUI, this, new Callback<Project>() {
 				@Override
 				public void callback(Screen source, PrintWriter out, Project project) {
-					// setScreen(new ViewProjectScreen(appUI, selectProjectDialog,
-					// project));
+					appUI.setScreen(new ViewProjectScreen(appUI, source, project));
 				}
 			});
 

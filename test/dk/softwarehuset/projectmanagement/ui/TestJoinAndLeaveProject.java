@@ -22,11 +22,13 @@ public class TestJoinAndLeaveProject extends SampleDataSetupWithProjects {
 
 		// Check projects exist
 		appUITester.selectOption("[120001] Hello World!").expectNothing();
-		
+
+		appUITester.expectOption("Back");
+
 		// Join project
 		appUITester.selectOption("Join project").expect("You've joined the project \"Hello World!\".");
 	}
-	
+
 	@Test
 	public void testLeaveProject() throws IOException {
 		// Sign in as an employee
@@ -38,10 +40,10 @@ public class TestJoinAndLeaveProject extends SampleDataSetupWithProjects {
 
 		// Check projects exist
 		appUITester.selectOption("[120001] Hello World!").expectNothing();
-		
+
 		// Join project
 		appUITester.selectOption("Join project").expect("You've joined the project \"Hello World!\".");
-		
+
 		// Leave project
 		appUITester.selectOption("Leave project").expect("You've left the project \"Hello World!\".");
 	}

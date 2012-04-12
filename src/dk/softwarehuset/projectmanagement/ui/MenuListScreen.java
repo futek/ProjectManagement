@@ -34,7 +34,7 @@ public abstract class MenuListScreen extends Screen {
 		}
 
 		if (index >= 0 && index < options.length) {
-			optionSelected(0, options[index], out);
+			optionSelected(index, options[index], out);
 		} else {
 			invalidOptionSelected(out);
 		}
