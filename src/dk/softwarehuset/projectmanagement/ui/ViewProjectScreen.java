@@ -39,6 +39,12 @@ public class ViewProjectScreen extends MenuListScreen {
 			options.add("Join project");
 		}
 
+		if (project.getProjectLeader() == null) {
+			options.add("Register as project leader");
+		} else if (project.getProjectLeader() == appUI.getApp().getCurrentEmployee()) {
+			options.add("Unregister as project leader");
+		}
+
 		String[] array = options.toArray(new String[0]);
 
 		return array;
@@ -58,6 +64,12 @@ public class ViewProjectScreen extends MenuListScreen {
 		} else if (option.equals("Leave project")) {
 			project.removeEmployee(appUI.getApp().getCurrentEmployee());
 			out.println("You've left the project \"" + project.getName() + "\".");
+		} else if (option.equals("Register as project leader")) {
+			project.setProjectLeader(appUI.getApp().getCurrentEmployee());
+			out.println("You're now project leader for the project \"" + project.getName() + "\".");
+		} else if (option.equals("Unregister as project leader")) {
+			project.setProjectLeader(null);
+			out.println("You're no longer project leader for the project \"" + project.getName() + "\".");
 		}
 	}
 }

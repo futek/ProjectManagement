@@ -45,7 +45,8 @@ public class TestRegisterAsProjectLeader extends SampleDataSetupWithProjects {
 		// Register project leader
 		appUITester.selectOption("Register as project leader").expect("You're now project leader for the project \"Good afternoon World!\".");
 
-		// Exit menu
+		// Go back to main menu
+		appUITester.selectOption("Back").expectNothing();
 		appUITester.selectOption("Back").expectNothing();
 
 		// Sign out
