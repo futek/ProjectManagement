@@ -7,6 +7,7 @@ public class Project {
 	private String id;
 	private String name;
 	private List<Employee> employees = new ArrayList<Employee>();
+	private Employee projectLeader;
 
 	public Project(String id, String name) {
 		this.id = id;
@@ -41,5 +42,13 @@ public class Project {
 
 	public void removeEmployee(Employee employee) {
 		employees.remove(employee);
+	}
+
+	public void setProjectLeader(Employee employee) {
+		projectLeader = employee;
+	}
+
+	public Employee getProjectLeader() {
+		return projectLeader;
 	}
 }
