@@ -22,8 +22,11 @@ public class TestRegisterAsProjectLeader extends SampleDataSetupWithProjects{
 		// Check project leader is employee
 		assertEquals(employee, project.getProjectLeader());
 		
+		// Check project leader has joined the project
+		project.getEmployees().contains(employee);
+		
 		// Leave as project leader
-		project.setProjectLeader(null);
+		project.setProjectLeader(null);		
 		
 		// Check no project leader exists
 		assertNull(project.getProjectLeader());
