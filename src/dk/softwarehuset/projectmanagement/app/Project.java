@@ -44,6 +44,10 @@ public class Project {
 	}
 
 	public void removeEmployee(Employee employee) {
+		if (getProjectLeader() == employee) {
+			setProjectLeader(null);
+		}
+
 		employees.remove(employee);
 	}
 
@@ -67,22 +71,22 @@ public class Project {
 		if (endDate != null && startDate.compareTo(endDate) == 1) {
 			throw new IllegalArgumentException("Start date after end date");
 		}
-		
+
 		this.startDate = startDate;
 	}
-	
+
 	public void setEndDate(Week endDate) throws IllegalArgumentException {
 		if (startDate != null && endDate.compareTo(startDate) == -1) {
 			throw new IllegalArgumentException("End date before start date");
 		}
-		
+
 		this.endDate = endDate;
 	}
-	
+
 	public Week getStartDate() {
 		return startDate;
 	}
-	
+
 	public Week getEndDate() {
 		return endDate;
 	}
