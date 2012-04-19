@@ -8,7 +8,8 @@ public class MainScreen extends MenuListScreen {
 	private static final String[] BASE_OPTIONS = new String[] {
 			"Sign out",
 			"Create project",
-			"Browse all projects"
+			"Browse all projects",
+			"Create activity"
 	};
 	private static final String[] ADMIN_OPTIONS = new String[] {
 			"Create employee"
@@ -59,6 +60,8 @@ public class MainScreen extends MenuListScreen {
 			appUI.setScreen(selectProjectDialog);
 		} else if (option.equals("Create employee")) {
 			appUI.setScreen(new CreateEmployeeIdScreen(appUI));
+		} else if (option.equals("Create activity")) {
+			appUI.setScreen(new CreateActivityScreen(appUI, this));
 		}
 	}
 }
