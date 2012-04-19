@@ -8,6 +8,7 @@ public class Project {
 	private String name;
 	private List<Employee> employees = new ArrayList<Employee>();
 	private Employee projectLeader;
+	private List<Activity> activities = new ArrayList<Activity>();
 
 	public Project(String id, String name) {
 		this.id = id;
@@ -36,7 +37,7 @@ public class Project {
 				throw new NonUniqueIdentifierException("Employee on project already");
 			}
 		}
-		
+
 		employees.add(newEmployee);
 	}
 
@@ -50,5 +51,13 @@ public class Project {
 
 	public Employee getProjectLeader() {
 		return projectLeader;
+	}
+
+	public List<Activity> getActivities() {
+		return activities;
+	}
+
+	public void addActivity(Activity activity) {
+		activities.add(activity);
 	}
 }

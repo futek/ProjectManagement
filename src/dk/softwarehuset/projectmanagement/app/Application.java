@@ -77,6 +77,22 @@ public class Application {
 		return project;
 	}
 
+	public Activity createActivity(Project project, String name) {
+		Activity activity = new Activity(name);
+
+		project.addActivity(activity);
+
+		return activity;
+	}
+
+	public Activity createActivity(Employee employee, String name) {
+		Activity activity = new Activity(name);
+
+		employee.addActivity(activity);
+
+		return activity;
+	}
+
 	public void signIn(String id) throws WrongCredentialsException {
 		id = id.toUpperCase();
 

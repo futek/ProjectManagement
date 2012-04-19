@@ -1,5 +1,7 @@
 package dk.softwarehuset.projectmanagement.app;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.util.SampleDataSetupWithProjects;
@@ -14,11 +16,11 @@ public class TestCreateActivity extends SampleDataSetupWithProjects {
 		assertEquals(0, project.getActivities().size());
 
 		// Create activity on project
-		Activtiy activity = app.createActivity(project, name);
+		Activity activity = app.createActivity(project, name);
 
 		// Check activity exists on project
 		assertEquals(1, project.getActivities().size());
-		assertEquals(activities, project.getActivities().get(0));
+		assertEquals(activity, project.getActivities().get(0));
 	}
 
 	@Test
@@ -30,7 +32,7 @@ public class TestCreateActivity extends SampleDataSetupWithProjects {
 		assertEquals(0, employee.getActivities().size());
 
 		// Create activity on employee
-		Activtiy activity = app.createActivity(employee, name);
+		Activity activity = app.createActivity(employee, name);
 
 		// Check activity exists on project
 		assertEquals(1, employee.getActivities().size());
