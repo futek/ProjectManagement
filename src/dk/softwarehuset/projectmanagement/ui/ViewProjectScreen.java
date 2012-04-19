@@ -44,6 +44,7 @@ public class ViewProjectScreen extends MenuListScreen {
 		} else if (project.getProjectLeader() == appUI.getApp().getCurrentEmployee()) {
 			options.add("Unregister as project leader");
 			options.add("Create activity");
+			options.add("Edit project properties");
 		}
 
 		String[] array = options.toArray(new String[0]);
@@ -73,6 +74,8 @@ public class ViewProjectScreen extends MenuListScreen {
 			out.println("You're no longer project leader for the project \"" + project.getName() + "\".");
 		} else if (option.equals("Create activity")) {
 			appUI.setScreen(new CreateActivityScreen(appUI, this, project));
+		} else if (option.equals("Edit project properties")) {
+			appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
 		}
 	}
 }
