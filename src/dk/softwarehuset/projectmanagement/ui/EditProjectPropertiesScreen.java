@@ -7,7 +7,9 @@ import dk.softwarehuset.projectmanagement.app.Project;
 public class EditProjectPropertiesScreen extends MenuListScreen {
 	private static final String[] OPTIONS = {
 			"Exit",
-			"Edit name"
+			"Edit name",
+			"Edit start date",
+			"Edit end date"
 	};
 
 	private Project project;
@@ -29,6 +31,10 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 			appUI.setScreen(new MainScreen(appUI));
 		} else if (option.equals("Edit name")) {
 			appUI.setScreen(new EditProjectNameScreen(appUI, project));
+		} else if (option.equals("Edit start date")) {
+			appUI.setScreen(new EditProjectStartYearScreen(appUI, project));
+		} else if (option.equals("Edit end date")) {
+			appUI.setScreen(new EditProjectEndYearScreen(appUI, project));
 		}
 	}
 }

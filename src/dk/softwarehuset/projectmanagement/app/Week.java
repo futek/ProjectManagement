@@ -1,6 +1,6 @@
 package dk.softwarehuset.projectmanagement.app;
 
-public class Week {
+public class Week implements Comparable<Week> {
 	private int year;
 	private int weekNumber;
 
@@ -19,5 +19,22 @@ public class Week {
 
 	public int getWeekNumber() {
 		return weekNumber;
+	}
+
+	@Override
+	public int compareTo(Week other) {
+		if (this.getYear() > other.getYear()) {
+			return 1;
+		} else if (this.getYear() < other.getYear()) {
+			return -1;
+		} else {
+			if (this.getWeekNumber() > other.getWeekNumber()) {
+				return 1;
+			} else if (this.getWeekNumber() < other.getWeekNumber()) {
+				return -1;
+			}
+		}
+		
+		return 0;
 	}
 }
