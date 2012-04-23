@@ -47,7 +47,7 @@ public class TestEditActivityProperties extends SampleDataSetupWithProjects {
 		appUITester.selectOption("Browse activities").expectNothing();
 		appUITester.selectOption("Design").expectNothing();
 		appUITester.selectOption("Edit name").expectNothing();
-		appUITester.expect("New name: ").write("Implementation").expect("Activity \"Design\" changed to \"Implementation\".");
+		appUITester.expect("Old activity name: Design", "New activity name: ").write("Implementation").expect("Activity \"Design\" changed to \"Implementation\".");
 		appUITester.selectOption("Back").expectNothing();
 
 		// Check that it changed name

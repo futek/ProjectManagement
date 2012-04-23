@@ -1,6 +1,8 @@
 package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import dk.softwarehuset.projectmanagement.app.Activity;
 
@@ -21,13 +23,20 @@ public class ViewActivityScreen extends MenuListScreen {
 
 	@Override
 	public String[] getOptions() {
-		return OPTIONS;
+		List<String> options = new ArrayList<String>();
+
+		options.add("Back");
+		options.add("Edit name"); // TODO: Limit to project leader?
+
+		return options.toArray(new String[0]);
 	}
 
 	@Override
 	public void optionSelected(int index, String option, PrintWriter out) {
 		if (option.equals("Back")) {
 			appUI.setScreen(source);
+		} else if (option.equals("Edit name")) {
+			appUI.setScreen(new EditActivityNameScreen(appUI, source, activity));
 		}
 	}
 }

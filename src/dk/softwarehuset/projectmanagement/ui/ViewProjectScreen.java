@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import dk.softwarehuset.projectmanagement.app.Activity;
 import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
 import dk.softwarehuset.projectmanagement.app.Project;
@@ -35,6 +36,7 @@ public class ViewProjectScreen extends MenuListScreen {
 
 		if (inProject) {
 			options.add("Leave project");
+			options.add("Browse activities");
 
 			if (project.getProjectLeader() == null) {
 				options.add("Register as project leader");
@@ -65,7 +67,15 @@ public class ViewProjectScreen extends MenuListScreen {
 			}
 		} else if (option.equals("Leave project")) {
 			project.removeEmployee(appUI.getApp().getCurrentEmployee());
-			out.println("You've left the project \"" + project.getName() + "\".");
+		} else if (option.equals("Browse activities")) {
+			SelectActivityDialog selectActivityDialog = new SelectActivityDialog(appUI, this, project, new Callback<Activity>() {
+				@Override
+				public void callback(Screen source, PrintWriter out, Activity activity) {
+					appUI.setScreen(new ViewActivityScreen(appUI, source, activity));
+				}
+			});
+
+			appUI.setScreen(selectActivityDialog);
 		} else if (option.equals("Register as project leader")) {
 			project.setProjectLeader(appUI.getApp().getCurrentEmployee());
 			out.println("You're now project leader for the project \"" + project.getName() + "\".");
