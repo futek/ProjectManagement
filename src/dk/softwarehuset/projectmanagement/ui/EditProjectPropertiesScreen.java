@@ -34,9 +34,9 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 		} else if (option.equals("Edit name")) {
 			appUI.setScreen(new EditProjectNameScreen(appUI, project));
 		} else if (option.equals("Edit start date")) {
-			appUI.setScreen(new EditProjectStartYearScreen(appUI, project));
+			appUI.setScreen(new EditProjectStartYearScreen(appUI, this, project));
 		} else if (option.equals("Edit end date")) {
-			appUI.setScreen(new EditProjectEndYearScreen(appUI, project));
+			appUI.setScreen(new EditProjectEndYearScreen(appUI, this, project));
 		}
 	}
 }

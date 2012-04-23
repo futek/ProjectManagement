@@ -6,23 +6,26 @@ import dk.softwarehuset.projectmanagement.app.Project;
 import dk.softwarehuset.projectmanagement.app.Week;
 
 public class EditProjectStartYearScreen extends PromptScreen {
+	private Screen source;
 	private Project project;
 
-	public EditProjectStartYearScreen(ApplicationUI appUI, Project project) {
+	public EditProjectStartYearScreen(ApplicationUI appUI, Screen source, Project project) {
 		super(appUI);
 
+		this.source = source;
 		this.project = project;
 	}
 
 	@Override
 	public String getText() {
 		Week startDate = project.getStartDate();
+		String text = "New start year";
 
 		if (startDate != null) {
-			return String.format("Old start year: %d%nNew start year", startDate.getYear());
+			text = String.format("Old start year: %d%n%s", startDate.getYear(), text);
 		}
 
-		return "New start year";
+		return text;
 	}
 
 	@Override
@@ -37,8 +40,7 @@ public class EditProjectStartYearScreen extends PromptScreen {
 		if (startYear < 0) {
 			out.println("Invalid year. Try again.");
 		} else {
-			appUI.setScreen(new EditProjectStartWeekScreen(appUI, startYear, project));
+			appUI.setScreen(new EditProjectStartWeekScreen(appUI, source, project, startYear));
 		}
-
 	}
 }

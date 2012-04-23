@@ -54,6 +54,5 @@ public class EditActivityStartWeekScreen extends PromptScreen {
 
 			appUI.setScreen(source);
 		}
-
 	}
 }
