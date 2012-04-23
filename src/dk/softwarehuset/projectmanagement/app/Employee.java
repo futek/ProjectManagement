@@ -3,6 +3,8 @@ package dk.softwarehuset.projectmanagement.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
 public class Employee {
 	private String id;
 	private String name;
@@ -31,5 +33,13 @@ public class Employee {
 
 	public void addActivity(Activity activity) {
 		activities.add(activity);
+	}
+
+	public void registerTime(Activity activity, int duration) {
+		LocalDate today = LocalDate.now(); // TODO: Use date server?
+
+		duration += activity.getRegisteredTime(this, today);
+
+		activity.setRegisteredTime(this, today, duration);
 	}
 }
