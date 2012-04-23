@@ -45,7 +45,7 @@ public class TestCreateProject extends SampleDataSetup {
 		assertEquals(name, app.getProjectById("120001").getName());
 
 		// Exit edit project properties screen
-		appUITester.selectOption("Exit").expectNothing();
+		appUITester.selectOption("Back").expectNothing();
 
 		// Sign out
 		appUITester.selectOption("Sign out").expect("You signed out.");
@@ -79,7 +79,7 @@ public class TestCreateProject extends SampleDataSetup {
 		for (int i = 1; i <= 9999; i++) {
 			appUITester.selectOption("Create project").expectNothing();
 			appUITester.expect("New project name: ").write("Project #" + i).expect("Project \"Project #" + i + "\" created.");
-			appUITester.selectOption("Exit").expectNothing();
+			appUITester.selectOption("Back").expectNothing();
 		}
 
 		// Attempt to create the 10000th project

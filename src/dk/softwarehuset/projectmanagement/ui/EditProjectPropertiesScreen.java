@@ -6,17 +6,19 @@ import dk.softwarehuset.projectmanagement.app.Project;
 
 public class EditProjectPropertiesScreen extends MenuListScreen {
 	private static final String[] OPTIONS = {
-			"Exit",
+			"Back",
 			"Edit name",
 			"Edit start date",
 			"Edit end date"
 	};
 
 	private Project project;
+	private Screen source;
 
-	public EditProjectPropertiesScreen(ApplicationUI appUI, Project project) {
+	public EditProjectPropertiesScreen(ApplicationUI appUI, Screen source, Project project) {
 		super(appUI);
 
+		this.source = source;
 		this.project = project;
 	}
 
@@ -27,8 +29,8 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 
 	@Override
 	public void optionSelected(int index, String option, PrintWriter out) {
-		if (option.equals("Exit")) {
-			appUI.setScreen(new MainScreen(appUI));
+		if (option.equals("Back")) {
+			appUI.setScreen(source);
 		} else if (option.equals("Edit name")) {
 			appUI.setScreen(new EditProjectNameScreen(appUI, project));
 		} else if (option.equals("Edit start date")) {

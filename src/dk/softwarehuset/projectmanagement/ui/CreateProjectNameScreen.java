@@ -37,6 +37,7 @@ public class CreateProjectNameScreen extends PromptScreen {
 		}
 
 		out.printf("Project \"%s\" created.\n", project.getName());
-		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+		MainScreen mainScreen = new MainScreen(appUI);
+		appUI.setScreen(new EditProjectPropertiesScreen(appUI, mainScreen, project));
 	}
 }

@@ -31,6 +31,7 @@ public class EditProjectNameScreen extends PromptScreen {
 		String name = input.trim();
 		project.setName(name);
 
-		appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+		ViewProjectScreen projectScreen = new ViewProjectScreen(appUI, new MainScreen(appUI), project);
+		appUI.setScreen(new EditProjectPropertiesScreen(appUI, projectScreen, project));
 	}
 }

@@ -20,6 +20,9 @@ public class TestCreateActivity extends SampleDataSetupWithProjects {
 		// View a project
 		appUITester.selectOption("Browse all projects").expectNothing();
 		appUITester.selectOption("[120001] Hello World!").expectNothing();
+		
+		// Join project
+		appUITester.selectOption("Join project").expect("You've joined the project \"Hello World!\".");
 
 		// Register as project leader
 		appUITester.selectOption("Register as project leader").expect("You're now project leader for the project \"Hello World!\".");
