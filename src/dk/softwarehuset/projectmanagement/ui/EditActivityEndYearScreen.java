@@ -2,23 +2,23 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
-import dk.softwarehuset.projectmanagement.app.Project;
+import dk.softwarehuset.projectmanagement.app.Activity;
 import dk.softwarehuset.projectmanagement.app.Week;
 
-public class EditProjectEndYearScreen extends PromptScreen {
+public class EditActivityEndYearScreen extends PromptScreen {
 	private Screen source;
-	private Project project;
+	private Activity activity;
 
-	public EditProjectEndYearScreen(ApplicationUI appUI, Screen source, Project project) {
+	public EditActivityEndYearScreen(ApplicationUI appUI, Screen source, Activity activity) {
 		super(appUI);
 
 		this.source = source;
-		this.project = project;
+		this.activity = activity;
 	}
 
 	@Override
 	public String getText() {
-		Week endDate = project.getEndDate();
+		Week endDate = activity.getEndDate();
 		String text = "New end year";
 
 		if (endDate != null) {
@@ -40,7 +40,7 @@ public class EditProjectEndYearScreen extends PromptScreen {
 		if (endYear < 0) {
 			out.println("Invalid year. Try again.");
 		} else {
-			appUI.setScreen(new EditProjectEndWeekScreen(appUI, source, project, endYear));
+			appUI.setScreen(new EditActivityEndWeekScreen(appUI, source, activity, endYear));
 		}
 	}
 }

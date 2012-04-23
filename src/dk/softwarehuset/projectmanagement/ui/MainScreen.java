@@ -1,6 +1,8 @@
 package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import dk.softwarehuset.projectmanagement.app.Project;
 
@@ -21,20 +23,19 @@ public class MainScreen extends MenuListScreen {
 	public MainScreen(ApplicationUI appUI) {
 		super(appUI);
 
-		if (appUI.getApp().getCurrentEmployee().isAdmin()) {
-			// TODO: Use some array concat helper method
-			options = new String[BASE_OPTIONS.length + ADMIN_OPTIONS.length];
+		List<String> options = new ArrayList<String>();
 
-			int i = 0;
-			for (String option : BASE_OPTIONS) {
-				options[i++] = option;
-			}
-			for (String option : ADMIN_OPTIONS) {
-				options[i++] = option;
-			}
-		} else {
-			options = BASE_OPTIONS;
+		for (String option : BASE_OPTIONS) {
+			options.add(option);
 		}
+
+		if (appUI.getApp().getCurrentEmployee().isAdmin()) {
+			for (String option : ADMIN_OPTIONS) {
+				options.add(option);
+			}
+		}
+
+		this.options = options.toArray(new String[0]);
 	}
 
 	@Override

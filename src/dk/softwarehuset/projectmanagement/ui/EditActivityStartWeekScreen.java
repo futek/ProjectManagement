@@ -2,25 +2,25 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
-import dk.softwarehuset.projectmanagement.app.Project;
+import dk.softwarehuset.projectmanagement.app.Activity;
 import dk.softwarehuset.projectmanagement.app.Week;
 
-public class EditProjectStartWeekScreen extends PromptScreen {
+public class EditActivityStartWeekScreen extends PromptScreen {
 	private Screen source;
-	private Project project;
+	private Activity activity;
 	private int startYear;
 
-	public EditProjectStartWeekScreen(ApplicationUI appUI, Screen source, Project project, int startYear) {
+	public EditActivityStartWeekScreen(ApplicationUI appUI, Screen source, Activity activity, int startYear) {
 		super(appUI);
 
 		this.source = source;
-		this.project = project;
+		this.activity = activity;
 		this.startYear = startYear;
 	}
 
 	@Override
 	public String getText() {
-		Week startDate = project.getStartDate();
+		Week startDate = activity.getStartDate();
 		String text = "New start week";
 
 		if (startDate != null) {
@@ -45,7 +45,7 @@ public class EditProjectStartWeekScreen extends PromptScreen {
 			Week startDate = new Week(startYear, startWeek);
 
 			try {
-				project.setStartDate(startDate);
+				activity.setStartDate(startDate);
 			} catch (IllegalArgumentException e) {
 				out.println(e.getMessage() + ". Try again.");
 

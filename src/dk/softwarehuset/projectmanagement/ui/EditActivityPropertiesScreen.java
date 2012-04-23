@@ -2,9 +2,9 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
-import dk.softwarehuset.projectmanagement.app.Project;
+import dk.softwarehuset.projectmanagement.app.Activity;
 
-public class EditProjectPropertiesScreen extends MenuListScreen {
+public class EditActivityPropertiesScreen extends MenuListScreen {
 	private static final String[] OPTIONS = {
 			"Back",
 			"Edit name",
@@ -12,14 +12,14 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 			"Edit end date"
 	};
 
-	private Project project;
+	private Activity activity;
 	private Screen source;
 
-	public EditProjectPropertiesScreen(ApplicationUI appUI, Screen source, Project project) {
+	public EditActivityPropertiesScreen(ApplicationUI appUI, Screen source, Activity activity) {
 		super(appUI);
 
 		this.source = source;
-		this.project = project;
+		this.activity = activity;
 	}
 
 	@Override
@@ -32,11 +32,11 @@ public class EditProjectPropertiesScreen extends MenuListScreen {
 		if (option.equals("Back")) {
 			appUI.setScreen(source);
 		} else if (option.equals("Edit name")) {
-			appUI.setScreen(new EditProjectNameScreen(appUI, project));
+			appUI.setScreen(new EditActivityNameScreen(appUI, this, activity));
 		} else if (option.equals("Edit start date")) {
-			appUI.setScreen(new EditProjectStartYearScreen(appUI, this, project));
+			appUI.setScreen(new EditActivityStartYearScreen(appUI, this, activity));
 		} else if (option.equals("Edit end date")) {
-			appUI.setScreen(new EditProjectEndYearScreen(appUI, this, project));
+			appUI.setScreen(new EditActivityEndYearScreen(appUI, this, activity));
 		}
 	}
 }
