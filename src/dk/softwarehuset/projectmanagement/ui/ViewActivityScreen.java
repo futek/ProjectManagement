@@ -26,7 +26,7 @@ public class ViewActivityScreen extends MenuListScreen {
 		List<String> options = new ArrayList<String>();
 
 		options.add("Back");
-		options.add("Edit name"); // TODO: Limit to project leader?
+		options.add("Edit properties"); // TODO: Limit to project leader?
 
 		return options.toArray(new String[0]);
 	}
@@ -35,8 +35,8 @@ public class ViewActivityScreen extends MenuListScreen {
 	public void optionSelected(int index, String option, PrintWriter out) {
 		if (option.equals("Back")) {
 			appUI.setScreen(source);
-		} else if (option.equals("Edit name")) {
-			appUI.setScreen(new EditActivityNameScreen(appUI, source, activity));
+		} else if (option.equals("Edit properties")) {
+			appUI.setScreen(new EditActivityPropertiesScreen(appUI, source, activity));
 		}
 	}
 }
