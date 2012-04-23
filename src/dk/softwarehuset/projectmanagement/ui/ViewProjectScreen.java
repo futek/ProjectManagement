@@ -67,6 +67,7 @@ public class ViewProjectScreen extends MenuListScreen {
 			}
 		} else if (option.equals("Leave project")) {
 			project.removeEmployee(appUI.getApp().getCurrentEmployee());
+			out.println("You've left the project \"" + project.getName() + "\".");
 		} else if (option.equals("Browse activities")) {
 			SelectActivityDialog selectActivityDialog = new SelectActivityDialog(appUI, this, project, new Callback<Activity>() {
 				@Override
