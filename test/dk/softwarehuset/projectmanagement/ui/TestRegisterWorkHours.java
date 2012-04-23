@@ -1,16 +1,12 @@
 package dk.softwarehuset.projectmanagement.ui;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dk.softwarehuset.projectmanagement.app.Employee;
-import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
-import dk.softwarehuset.projectmanagement.app.Project;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 import dk.softwarehuset.projectmanagement.util.SampleDataSetupWithProjects;
 
@@ -51,11 +47,11 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		appUITester.selectOption("Projects");
 		appUITester.selectOption("[120002] Goodbye World!");
 		appUITester.selectOption("Design");
-		
+
 		// add the work hours
 		appUITester.expect("Time spent on \"Design\": 0");
 		appUITester.expect("Amount in minutes: ").write("120").expect("registered 120 minutes on activity \"Design\".");
 		assertEquals(120, appUI.getApp().getProjectById("120002").getTotalRegisteredTime());
-		
+
 	}
 }

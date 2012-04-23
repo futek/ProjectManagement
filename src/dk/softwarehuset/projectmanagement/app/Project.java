@@ -63,7 +63,11 @@ public class Project {
 		return activities;
 	}
 
-	public void addActivity(Activity activity) {
+	public void addActivity(Activity activity) throws IllegalStateException {
+		if (activities.contains(activity)) {
+			throw new IllegalStateException("Activity already added");
+		}
+
 		activities.add(activity);
 	}
 
@@ -89,5 +93,15 @@ public class Project {
 
 	public Week getEndDate() {
 		return endDate;
+	}
+
+	public int getTotalRegisteredTime() {
+		int total = 0;
+
+		for (Activity activity : activities) {
+			total += activity.getTotalRegisteredTime();
+		}
+
+		return total;
 	}
 }

@@ -14,7 +14,7 @@ public class Application {
 	private DateServer dateServer = new DateServer();
 
 	public Application() {
-		Admin admin = new Admin("ZZZZ", "Administrator");
+		Admin admin = new Admin("ZZZZ", "Administrator", this);
 		employees.add(admin);
 	}
 
@@ -43,7 +43,7 @@ public class Application {
 			}
 		}
 
-		Employee employee = new Employee(id, name);
+		Employee employee = new Employee(id, name, this);
 
 		employees.add(employee);
 

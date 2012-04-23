@@ -94,4 +94,20 @@ public class Activity {
 
 		return totalDuration;
 	}
+
+	public int getTotalRegisteredTime(Employee employee) {
+		int totalDuration = 0;
+
+		Map<LocalDate, Integer> map = registeredTime.get(employee);
+
+		if (map == null) {
+			return totalDuration;
+		}
+
+		for (int duration : map.values()) {
+			totalDuration += duration;
+		}
+
+		return totalDuration;
+	}
 }

@@ -7,10 +7,6 @@ import java.util.List;
 import dk.softwarehuset.projectmanagement.app.Activity;
 
 public class ViewActivityScreen extends MenuListScreen {
-	private static final String[] OPTIONS = new String[] {
-			"Back"
-	};
-
 	private Screen source;
 	private Activity activity;
 

@@ -9,10 +9,12 @@ public class Employee {
 	private String id;
 	private String name;
 	private List<Activity> activities = new ArrayList<Activity>();
+	private Application app;
 
-	public Employee(String id, String name) {
+	public Employee(String id, String name, Application app) {
 		this.id = id;
 		this.name = name;
+		this.app = app;
 	}
 
 	public String getId() {
@@ -31,7 +33,11 @@ public class Employee {
 		return activities;
 	}
 
-	public void addActivity(Activity activity) {
+	public void addActivity(Activity activity) throws IllegalStateException {
+		if (activities.contains(activity)) {
+			throw new IllegalStateException("Activity already added");
+		}
+
 		activities.add(activity);
 	}
 
@@ -41,5 +47,15 @@ public class Employee {
 		duration += activity.getRegisteredTime(this, today);
 
 		activity.setRegisteredTime(this, today, duration);
+	}
+
+	public int getTotalRegisteredTime() {
+		int total = 0;
+
+		for (Activity activity : activities) {
+			total += activity.getTotalRegisteredTime(this);
+		}
+
+		return total;
 	}
 }
