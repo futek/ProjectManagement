@@ -35,16 +35,16 @@ public class ViewProjectScreen extends MenuListScreen {
 
 		if (inProject) {
 			options.add("Leave project");
+
+			if (project.getProjectLeader() == null) {
+				options.add("Register as project leader");
+			} else if (project.getProjectLeader() == appUI.getApp().getCurrentEmployee()) {
+				options.add("Unregister as project leader");
+				options.add("Create activity");
+				options.add("Edit project properties");
+			}
 		} else {
 			options.add("Join project");
-		}
-
-		if (project.getProjectLeader() == null) {
-			options.add("Register as project leader");
-		} else if (project.getProjectLeader() == appUI.getApp().getCurrentEmployee()) {
-			options.add("Unregister as project leader");
-			options.add("Create activity");
-			options.add("Edit project properties");
 		}
 
 		String[] array = options.toArray(new String[0]);

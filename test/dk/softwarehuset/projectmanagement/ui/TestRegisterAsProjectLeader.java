@@ -23,11 +23,21 @@ public class TestRegisterAsProjectLeader extends SampleDataSetupWithProjects {
 		// Check projects exist
 		appUITester.selectOption("[120004] Good afternoon World!").expectNothing();
 
+		// Join before registering as project leader
+		appUITester.expectNoOption("Register as project leader");
+		appUITester.selectOption("Join project");
+
 		// Register project leader
 		appUITester.selectOption("Register as project leader").expect("You're now project leader for the project \"Good afternoon World!\".");
+		appUITester.expectNoOption("Register as project leader");
 
 		// Unregister project leader
 		appUITester.selectOption("Unregister as project leader").expect("You're no longer project leader for the project \"Good afternoon World!\".");
+		appUITester.expectNoOption("Unregister as project leader");
+
+		appUITester.expectOption("Register as project leader");
+		appUITester.selectOption("Leave project").expect("You've left the project \"Good afternoon World!\".");
+		appUITester.expectNoOption("Register as project leader");
 	}
 
 	@Test
@@ -43,6 +53,7 @@ public class TestRegisterAsProjectLeader extends SampleDataSetupWithProjects {
 		appUITester.selectOption("[120004] Good afternoon World!").expectNothing();
 
 		// Register project leader
+		appUITester.selectOption("Join project").expect("You've joined the project \"Good afternoon World!\".");
 		appUITester.selectOption("Register as project leader").expect("You're now project leader for the project \"Good afternoon World!\".");
 
 		// Go back to main menu
@@ -64,5 +75,30 @@ public class TestRegisterAsProjectLeader extends SampleDataSetupWithProjects {
 
 		// Check "register as project leader" option doesn't exist
 		appUITester.expectNoOption("Register as project leader");
+	}
+
+	@Test
+	public void testLeaveProjectAsProjectLeader() throws IOException {
+		// Sign in as an employee
+		appUITester.selectOption("Sign in").expectNothing();
+		appUITester.expect("Employee id: ").write("EFGH").expect("You signed in as \"Echo Foxtrot Golf Hotel\".");
+
+		// Browse all projects
+		appUITester.selectOption("Browse all projects").expectNothing();
+
+		// Check projects exist
+		appUITester.selectOption("[120001] Hello World!").expectNothing();
+
+		// Register project leader
+		appUITester.selectOption("Join project");
+		appUITester.selectOption("Register as project leader").expect("You're now project leader for the project \"Hello World!\".");
+		appUITester.expectNoOption("Register as project leader");
+
+		// Leave project leader
+		appUITester.selectOption("Leave project").expect("You've left the project \"Hello World!\".");
+		appUITester.expectNoOption("Unregister as project leader");
+		appUITester.selectOption("Join project").expect("You've joined the project \"Hello World!\".");
+		appUITester.expectNoOption("Unregister as project leader");
+		appUITester.expectOption("Register as project leader");
 	}
 }
