@@ -68,14 +68,14 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		employee.registerTime(sleepPhase, 90);
 		
 		// Check that it was registered
-		assertEquals(270, employee.getTotalRegisteredTime());
-		assertEquals(270, project.getTotalRegisteredTime());
+		assertEquals(120+120+120+60+90, employee.getTotalRegisteredTime());
+		assertEquals(120+120+60+90, project.getTotalRegisteredTime());
 		
 		// add extra time
 		employee.registerTime(laughingCourse, 120);
 		employee.registerTime(designPhase, 270);
-		assertEquals(240, employee.getTotalRegisteredTime());
-		assertEquals(540, project.getTotalRegisteredTime());
+		assertEquals(120+120+120+60+90+120, employee.getTotalRegisteredTime());
+		assertEquals(120+120+60+90+270, project.getTotalRegisteredTime());
 		
 	}
 
