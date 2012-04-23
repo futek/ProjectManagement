@@ -49,9 +49,7 @@ public class ViewProjectScreen extends MenuListScreen {
 			options.add("Join project");
 		}
 
-		String[] array = options.toArray(new String[0]);
-
-		return array;
+		return options.toArray(new String[0]);
 	}
 
 	@Override
