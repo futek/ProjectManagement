@@ -75,7 +75,7 @@ public class ViewProjectScreen extends MenuListScreen {
 		} else if (option.equals("Create activity")) {
 			appUI.setScreen(new CreateActivityScreen(appUI, this, project));
 		} else if (option.equals("Edit project properties")) {
-			appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+			appUI.setScreen(new EditProjectPropertiesScreen(appUI, this, project));
 		}
 	}
 }

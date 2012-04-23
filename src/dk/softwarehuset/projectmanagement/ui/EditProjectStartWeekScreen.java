@@ -28,6 +28,7 @@ public class EditProjectStartWeekScreen extends PromptScreen {
 
 	@Override
 	public void processInput(String input, PrintWriter out) {
+	ViewProjectScreen projectScreen = new ViewProjectScreen(appUI, new MainScreen(appUI), project);
 	int startWeek = -1;
 		
 		try {
@@ -45,10 +46,10 @@ public class EditProjectStartWeekScreen extends PromptScreen {
 			} catch (IllegalArgumentException e) {
 				out.println(e.getMessage() + ". Try again.");
 				
-				appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+				appUI.setScreen(new EditProjectPropertiesScreen(appUI, projectScreen, project));
 			}
 			
-			appUI.setScreen(new EditProjectPropertiesScreen(appUI, project));
+			appUI.setScreen(new EditProjectPropertiesScreen(appUI, projectScreen, project));
 		}
 		
 		

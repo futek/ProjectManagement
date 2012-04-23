@@ -23,6 +23,9 @@ public class TestEditProjectProperties extends SampleDataSetupWithProjects {
 
 		// Check projects exist
 		appUITester.selectOption("[120004] Good afternoon World!").expectNothing();
+		
+		// Join project
+		appUITester.selectOption("Join project").expect("You've joined the project \"Good afternoon World!\".");
 
 		// Register project leader
 		appUITester.selectOption("Register as project leader").expect("You're now project leader for the project \"Good afternoon World!\".");
