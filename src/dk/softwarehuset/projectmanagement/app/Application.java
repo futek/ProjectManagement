@@ -1,9 +1,10 @@
 package dk.softwarehuset.projectmanagement.app;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+
+import org.joda.time.LocalDate;
 
 public class Application {
 	private List<Employee> employees = new ArrayList<Employee>();
@@ -14,7 +15,7 @@ public class Application {
 	private DateServer dateServer = new DateServer();
 
 	public Application() {
-		Admin admin = new Admin("ZZZZ", "Administrator", this);
+		Admin admin = new Admin(this, "ZZZZ", "Administrator");
 		employees.add(admin);
 	}
 
@@ -43,7 +44,7 @@ public class Application {
 			}
 		}
 
-		Employee employee = new Employee(id, name, this);
+		Employee employee = new Employee(this, id, name);
 
 		employees.add(employee);
 
@@ -55,7 +56,7 @@ public class Application {
 			throw new PermissionDeniedException("Not signed in");
 		}
 
-		int currentYear = dateServer.getDate().get(Calendar.YEAR);
+		int currentYear = getDate().year().get();
 
 		if (yearOfLatestProject != currentYear) {
 			annualProjectCounter = 0;
@@ -137,5 +138,9 @@ public class Application {
 
 	public void setDateServer(DateServer dateServer) {
 		this.dateServer = dateServer;
+	}
+
+	public LocalDate getDate() {
+		return dateServer.getDate();
 	}
 }

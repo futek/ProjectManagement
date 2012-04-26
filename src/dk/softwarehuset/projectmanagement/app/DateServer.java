@@ -1,9 +1,9 @@
 package dk.softwarehuset.projectmanagement.app;
 
-import java.util.Calendar;
+import org.joda.time.LocalDate;
 
 public class DateServer {
-	public Calendar getDate() {
-		return Calendar.getInstance();
+	public LocalDate getDate() {
+		return LocalDate.now();
 	}
 }

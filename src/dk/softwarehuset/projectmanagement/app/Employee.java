@@ -11,10 +11,10 @@ public class Employee {
 	private List<Activity> activities = new ArrayList<Activity>();
 	private Application app;
 
-	public Employee(String id, String name, Application app) {
+	public Employee(Application app, String id, String name) {
+		this.app = app;
 		this.id = id;
 		this.name = name;
-		this.app = app;
 	}
 
 	public String getId() {
@@ -42,7 +42,7 @@ public class Employee {
 	}
 
 	public void registerTime(Activity activity, int duration) {
-		LocalDate today = LocalDate.now(); // TODO: Use date server?
+		LocalDate today = app.getDate();
 
 		duration += activity.getRegisteredTime(this, today);
 

@@ -3,9 +3,7 @@ package dk.softwarehuset.projectmanagement.util;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
+import org.joda.time.LocalDate;
 import org.junit.Before;
 
 import dk.softwarehuset.projectmanagement.app.Application;
@@ -22,7 +20,7 @@ public class SampleDataSetup {
 		// Set date
 		DateServer dateServer = mock(DateServer.class);
 		app.setDateServer(dateServer);
-		Calendar date = new GregorianCalendar(2012, Calendar.MARCH, 26);
+		LocalDate date = new LocalDate(2012, 3, 26);
 		when(dateServer.getDate()).thenReturn(date);
 
 		// Sign in as administrator

@@ -1,8 +1,8 @@
 package dk.softwarehuset.projectmanagement.app;
 
 public class Admin extends Employee {
-	public Admin(String id, String name, Application app) {
-		super(id, name, app);
+	public Admin(Application app, String id, String name) {
+		super(app, id, name);
 	}
 
 	@Override
