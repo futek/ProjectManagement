@@ -1,7 +1,5 @@
 package dk.softwarehuset.projectmanagement.ui;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
 
 import org.junit.Before;
@@ -44,14 +42,27 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		// Navigate to the activity
 		appUITester.selectOption("Register work hours").expectNothing();
 		appUITester.expectOption("Personal activities");
-		appUITester.selectOption("Projects");
-		appUITester.selectOption("[120002] Goodbye World!");
-		appUITester.selectOption("Design");
+		appUITester.selectOption("Projects").expectNothing();
+		appUITester.selectOption("[120002] Goodbye World!").expectNothing();
+		appUITester.selectOption("Design").expectNothing();
 
-		// add the work hours
-		appUITester.expect("Time spent on \"Design\": 0");
-		appUITester.expect("Amount in minutes: ").write("120").expect("registered 120 minutes on activity \"Design\".");
-		assertEquals(120, appUI.getApp().getProjectById("120002").getTotalRegisteredTime());
+		// Add the work hours
+		appUITester.expect(
+				"Time spent on activity \"Design\" today: 0 min",
+				"Register time (in minutes): ")
+				.write("120").expect("Time spent on activity \"Design\" today: 120 min");
 
+		// Navigate to the same activity again
+		appUITester.selectOption("Register work hours").expectNothing();
+		appUITester.expectOption("Personal activities");
+		appUITester.selectOption("Projects").expectNothing();
+		appUITester.selectOption("[120002] Goodbye World!").expectNothing();
+		appUITester.selectOption("Design").expectNothing();
+
+		// Register more time
+		appUITester.expect(
+				"Time spent on activity \"Design\" today: 120 min",
+				"Register time (in minutes): ")
+				.write("30").expect("Time spent on activity \"Design\" today: 150 min");
 	}
 }

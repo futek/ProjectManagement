@@ -5,28 +5,42 @@ import java.io.PrintWriter;
 import dk.softwarehuset.projectmanagement.app.Activity;
 
 public class RegisterTimeOnActivityScreen extends PromptScreen {
+	private Activity activity;
 
 	public RegisterTimeOnActivityScreen(ApplicationUI appUI, Screen source, Activity activity) {
 		super(appUI);
-		// TODO Auto-generated constructor stub
-	}
 
-	@Override
-	public void print(PrintWriter out) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void processInput(String input, PrintWriter out) {
-		// TODO Auto-generated method stub
-
+		this.activity = activity;
 	}
 
 	@Override
 	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.format(
+				"Time spent on activity \"%s\" today: %d min%nRegister time (in minutes)",
+				activity.getName(),
+				activity.getRegisteredTime(appUI.getApp().getCurrentEmployee(), appUI.getApp().getDate()));
 	}
 
+	@Override
+	public void processInput(String input, PrintWriter out) {
+		int duration = -1;
+
+		try {
+			duration = Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+		}
+
+		if (duration < 0) {
+			out.println("Invalid duration. Try again.");
+		} else {
+			appUI.getApp().getCurrentEmployee().registerTime(activity, duration);
+
+			out.printf(
+					"Time spent on activity \"%s\" today: %d min%n",
+					activity.getName(),
+					activity.getRegisteredTime(appUI.getApp().getCurrentEmployee(), appUI.getApp().getDate()));
+
+			appUI.setScreen(new MainScreen(appUI));
+		}
+	}
 }
