@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import dk.softwarehuset.projectmanagement.app.Employee;
 import dk.softwarehuset.projectmanagement.app.Project;
 
 public class SelectProjectDialog extends MenuListScreen {
@@ -16,6 +17,22 @@ public class SelectProjectDialog extends MenuListScreen {
 
 		this.source = source;
 		this.callback = callback;
+	}
+
+	// Present only projects employee joined
+	public SelectProjectDialog(ApplicationUI appUI, Screen source, Employee employee, Callback<Project> callback) {
+		super(appUI);
+
+		this.source = source;
+		this.callback = callback;
+
+		List<Project> filteredProjects = new ArrayList<Project>();
+		for (Project project : projects) {
+			if (project.getEmployees().contains(employee)) {
+				filteredProjects.add(project);
+			}
+		}
+		projects = filteredProjects;
 	}
 
 	@Override

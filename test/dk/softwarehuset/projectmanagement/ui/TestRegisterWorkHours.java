@@ -43,6 +43,7 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		appUITester.selectOption("Register work hours").expectNothing();
 		appUITester.expectOption("Personal activities");
 		appUITester.selectOption("Projects").expectNothing();
+		appUITester.expect("0) Back", "1) [120002] Goodbye World!", "-> "); // Check projects were filtered
 		appUITester.selectOption("[120002] Goodbye World!").expectNothing();
 		appUITester.selectOption("Design").expectNothing();
 

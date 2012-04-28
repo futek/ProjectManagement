@@ -31,10 +31,10 @@ public class PersonalOrProjectsScreen extends MenuListScreen {
 	public void optionSelected(int index, String option, PrintWriter out) {
 		if (option.equals("Back")) {
 			appUI.setScreen(source);
-		} else if (option.equals("Personal activities")){
+		} else if (option.equals("Personal activities")) {
 			appUI.setScreen(new MyActivitiesScreen(appUI));
 		} else if (option.equals("Projects")) {
-			SelectProjectDialog selectProjectDialog = new SelectProjectDialog(appUI, source, new Callback<Project>() {
+			SelectProjectDialog selectProjectDialog = new SelectProjectDialog(appUI, source, appUI.getApp().getCurrentEmployee(), new Callback<Project>() {
 				@Override
 				public void callback(Screen source, PrintWriter out, Project project) {
 					SelectActivityDialog selectActivityDialog = new SelectActivityDialog(appUI, source, project, new Callback<Activity>() {
@@ -43,12 +43,12 @@ public class PersonalOrProjectsScreen extends MenuListScreen {
 							appUI.setScreen(new RegisterTimeOnActivityScreen(appUI, source, activity));
 						}
 					});
-					
+
 					appUI.setScreen(selectActivityDialog);
-				}				
+				}
 			});
-			
-			appUI.setScreen(selectProjectDialog);			
+
+			appUI.setScreen(selectProjectDialog);
 		}
 	}
 }
