@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 import dk.softwarehuset.projectmanagement.util.SampleDataSetupWithProjects;
 
@@ -13,7 +12,7 @@ public class TestEditProjectProperties extends SampleDataSetupWithProjects {
 	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 
 	@Test
-	public void testEditProject() throws WrongCredentialsException, IOException {
+	public void testEditProject() throws IOException {
 		// Sign in as an employee
 		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write("ABCD").expect("You signed in as \"Alpha Bravo Charlie Delta\".");
@@ -23,7 +22,7 @@ public class TestEditProjectProperties extends SampleDataSetupWithProjects {
 
 		// Check projects exist
 		appUITester.selectOption("[120004] Good afternoon World!").expectNothing();
-		
+
 		// Join project
 		appUITester.selectOption("Join project").expect("You've joined the project \"Good afternoon World!\".");
 

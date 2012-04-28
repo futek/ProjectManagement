@@ -12,7 +12,7 @@ public class TestEditActivityProperties extends SampleDataSetupWithProjects {
 	private Activity activity;
 
 	@Before
-	public void setupActivityOnProject() throws IOException, WrongCredentialsException, NonUniqueIdentifierException {
+	public void setupActivityOnProject() throws IOException, InvalidArgumentException {
 		// Sign in as an employee
 		app.signIn("IJKL");
 

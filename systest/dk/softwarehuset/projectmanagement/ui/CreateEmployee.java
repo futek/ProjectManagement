@@ -32,7 +32,7 @@ public class CreateEmployee {
 		appUITester.expect("Employee id: ").write("zzzz").expect("You signed in as \"Administrator\".");
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write("").expect("No id given.");
-		appUITester.selectOption("Sign out").expect("You've signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
@@ -42,7 +42,7 @@ public class CreateEmployee {
 		appUITester.expect("Employee id: ").write("zzzz").expect("You signed in as \"Administrator\".");
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write("zzz").expect("Id too short.");
-		appUITester.selectOption("Sign out").expect("You've signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
@@ -52,7 +52,7 @@ public class CreateEmployee {
 		appUITester.expect("Employee id: ").write("zzzz").expect("You signed in as \"Administrator\".");
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write("zzzz").expect("Id already taken.");
-		appUITester.selectOption("Sign out").expect("You've signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
@@ -63,7 +63,7 @@ public class CreateEmployee {
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write("abcd").expectNothing();
 		appUITester.expect("New employee name: ").write("").expect("No name given.");
-		appUITester.selectOption("Sign out").expect("You've signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
@@ -74,7 +74,7 @@ public class CreateEmployee {
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write("abcd").expectNothing();
 		appUITester.expect("New employee name: ").write("Elton John").expect("Employee \"Elton John\" created.");
-		appUITester.selectOption("Sign out").expect("You've signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 
@@ -84,7 +84,7 @@ public class CreateEmployee {
 		appUITester.expect("Employee id: ").write("zzzz").expect("You signed in as \"Administrator\".");
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write("abcde").expect("Id too long.");
-		appUITester.selectOption("Sign out").expect("You've signed out.");
+		appUITester.selectOption("Sign out").expect("You signed out.");
 		appUITester.selectOption("Exit").expect("Exited.").expectExit();
 	}
 

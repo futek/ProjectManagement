@@ -3,6 +3,7 @@ package dk.softwarehuset.projectmanagement.app;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Project {
 	private String id;
 	private String name;
@@ -33,10 +34,10 @@ public class Project {
 		return employees;
 	}
 
-	public void addEmployee(Employee newEmployee) throws NonUniqueIdentifierException {
+	public void addEmployee(Employee newEmployee) throws InvalidArgumentException {
 		for (Employee employee : employees) {
 			if (id.equals(employee.getId())) {
-				throw new NonUniqueIdentifierException("Employee on project already");
+				throw new InvalidArgumentException("Employee on project already");
 			}
 		}
 

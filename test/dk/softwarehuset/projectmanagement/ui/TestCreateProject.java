@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 import dk.softwarehuset.projectmanagement.util.SampleDataSetup;
 
@@ -18,7 +17,7 @@ public class TestCreateProject extends SampleDataSetup {
 	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 
 	@Test
-	public void testCreateProject() throws WrongCredentialsException, IOException {
+	public void testCreateProject() throws IOException {
 		// Check no projects exist
 		assertEquals(0, app.getProjects().size());
 

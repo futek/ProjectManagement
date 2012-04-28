@@ -10,9 +10,8 @@ import java.io.IOException;
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.app.Application;
-import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
-import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 
 public class TestCreateEmployee {
@@ -21,7 +20,7 @@ public class TestCreateEmployee {
 	private ApplicationUITester appUITester = new ApplicationUITester(appUI);
 
 	@Test
-	public void testCreateEmployee() throws WrongCredentialsException, PermissionDeniedException, NonUniqueIdentifierException, IOException {
+	public void testCreateEmployee() throws InvalidArgumentException, PermissionDeniedException, IOException {
 		// Check no employees exist
 		assertTrue(app.getEmployees().size() == 1);
 
@@ -41,7 +40,7 @@ public class TestCreateEmployee {
 		String name = "Alpha Bravo Charlie Delta";
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write(id).expectNothing();
-		appUITester.expect("New employee name: ").write(name).expectNothing();
+		appUITester.expect("New employee name: ").write(name).expect("Employee \"" + name + "\" created.");
 
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
@@ -60,7 +59,7 @@ public class TestCreateEmployee {
 	}
 
 	@Test
-	public void testCreateEmployeeFailNonUniqueIdentifier() throws IOException {
+	public void testCreateEmployeeFailNonUniqueId() throws IOException {
 		// Check no employees exist
 		assertTrue(app.getEmployees().size() == 1);
 
@@ -80,7 +79,7 @@ public class TestCreateEmployee {
 		String name1 = "Alpha Bravo Charlie Delta";
 		appUITester.selectOption("Create employee").expectNothing();
 		appUITester.expect("New employee id: ").write(id1).expectNothing();
-		appUITester.expect("New employee name: ").write(name1).expectNothing();
+		appUITester.expect("New employee name: ").write(name1).expect("Employee \"" + name1 + "\" created.");
 
 		// Check employee was added
 		assertTrue(app.getEmployees().size() == 2);
@@ -90,7 +89,7 @@ public class TestCreateEmployee {
 
 		// Add another employee with same id
 		appUITester.selectOption("Create employee").expectNothing();
-		appUITester.expect("New employee id: ").write(id1).expect("Employee id taken.");
+		appUITester.expect("New employee id: ").write(id1).expect("Id already taken.");
 
 		// Check employee not added
 		assertTrue(app.getEmployees().size() == 2);

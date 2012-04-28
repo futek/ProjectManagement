@@ -7,20 +7,21 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+
 public class TestCreateEmployee {
 	private Application app = new Application();
 
-	@Test(expected = WrongCredentialsException.class)
-	public void testSignInFailedWrongUsername() throws WrongCredentialsException {
+	@Test(expected = InvalidArgumentException.class)
+	public void testSignInFailedWrongUsername() throws InvalidArgumentException {
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
-		// Sign in with wrong credentials
+		// Sign in with unknown id
 		app.signIn("ABCD");
 	}
 
 	@Test
-	public void testAdminSignInAndOut() throws WrongCredentialsException {
+	public void testAdminSignInAndOut() throws InvalidArgumentException {
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
@@ -39,7 +40,7 @@ public class TestCreateEmployee {
 	}
 
 	@Test
-	public void testCreateEmployee() throws WrongCredentialsException, PermissionDeniedException, NonUniqueIdentifierException {
+	public void testCreateEmployee() throws InvalidArgumentException, PermissionDeniedException {
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
@@ -66,7 +67,7 @@ public class TestCreateEmployee {
 	}
 
 	@Test(expected = PermissionDeniedException.class)
-	public void testCreateEmployeeFailNotSignedIn() throws PermissionDeniedException, NonUniqueIdentifierException {
+	public void testCreateEmployeeFailNotSignedIn() throws InvalidArgumentException, PermissionDeniedException {
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
@@ -77,7 +78,7 @@ public class TestCreateEmployee {
 	}
 
 	@Test(expected = PermissionDeniedException.class)
-	public void testCreateEmployeeFailNotAdmin() throws WrongCredentialsException, PermissionDeniedException, NonUniqueIdentifierException {
+	public void testCreateEmployeeFailNotAdmin() throws InvalidArgumentException, PermissionDeniedException {
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 
@@ -115,8 +116,8 @@ public class TestCreateEmployee {
 		app.createEmployee(id2, name2);
 	}
 
-	@Test(expected = NonUniqueIdentifierException.class)
-	public void testCreateEmployeeFailNonUniqueIdentifier() throws WrongCredentialsException, PermissionDeniedException, NonUniqueIdentifierException {
+	@Test(expected = InvalidArgumentException.class)
+	public void testCreateEmployeeFailNonUniqueIdentifier() throws InvalidArgumentException, PermissionDeniedException {
 		// Check nobody is signed in
 		assertNull(app.getCurrentEmployee());
 

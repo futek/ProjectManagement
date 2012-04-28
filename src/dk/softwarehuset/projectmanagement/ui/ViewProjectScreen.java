@@ -6,7 +6,7 @@ import java.util.List;
 
 import dk.softwarehuset.projectmanagement.app.Activity;
 import dk.softwarehuset.projectmanagement.app.Employee;
-import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 import dk.softwarehuset.projectmanagement.app.Project;
 
 public class ViewProjectScreen extends MenuListScreen {
@@ -60,7 +60,7 @@ public class ViewProjectScreen extends MenuListScreen {
 			try {
 				project.addEmployee(appUI.getApp().getCurrentEmployee());
 				out.println("You've joined the project \"" + project.getName() + "\".");
-			} catch (NonUniqueIdentifierException e) {
+			} catch (InvalidArgumentException e) {
 				out.println(e.getMessage() + ".");
 			}
 		} else if (option.equals("Leave project")) {

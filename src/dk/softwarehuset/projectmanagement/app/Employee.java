@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
+
 public class Employee {
 	private String id;
 	private String name;
@@ -57,5 +58,15 @@ public class Employee {
 		}
 
 		return total;
+	}
+
+	public static void validateId(String id) throws InvalidArgumentException {
+		if (id.length() == 0) {
+			throw new InvalidArgumentException("No id given");
+		} else if (id.length() < 4) {
+			throw new InvalidArgumentException("Id too short");
+		} else if (id.length() > 4) {
+			throw new InvalidArgumentException("Id too long");
+		}
 	}
 }

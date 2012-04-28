@@ -9,7 +9,7 @@ import dk.softwarehuset.projectmanagement.util.SampleDataSetupWithProjects;
 public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 
 	// @Test
-	public void testRegisterWorkHours() throws WrongCredentialsException, NonUniqueIdentifierException {
+	public void testRegisterWorkHours() throws InvalidArgumentException {
 		String id = "120001";
 
 		// Sign in as employee
@@ -38,7 +38,7 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 	}
 
 	@Test
-	public void testRegisterWorkHoursMultiple() throws WrongCredentialsException, NonUniqueIdentifierException {
+	public void testRegisterWorkHoursMultiple() throws InvalidArgumentException {
 		String id = "120001";
 
 		// Sign in as employee

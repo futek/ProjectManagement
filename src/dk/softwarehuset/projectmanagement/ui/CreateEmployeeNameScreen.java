@@ -2,7 +2,8 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
-import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
+import dk.softwarehuset.projectmanagement.app.Employee;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
 
 public class CreateEmployeeNameScreen extends PromptScreen {
@@ -24,19 +25,21 @@ public class CreateEmployeeNameScreen extends PromptScreen {
 	@Override
 	public void processInput(String input, PrintWriter out) {
 		String name = input.trim();
+		Employee employee;
 
 		try {
-			appUI.getApp().createEmployee(id, name);
-		} catch (NonUniqueIdentifierException e) {
-			out.println("Employee id taken.");
+			employee = appUI.getApp().createEmployee(id, name);
+		} catch (InvalidArgumentException e) {
+			out.println(e.getMessage() + ".");
 			appUI.setScreen(new MainScreen(appUI));
 			return;
 		} catch (PermissionDeniedException e) {
-			out.println("Not admin.");
+			out.println(e.getMessage() + ".");
 			appUI.setScreen(new StartScreen(appUI));
 			return;
 		}
 
+		out.printf("Employee \"%s\" created.%n", employee.getName());
 		appUI.setScreen(new MainScreen(appUI));
 	}
 }

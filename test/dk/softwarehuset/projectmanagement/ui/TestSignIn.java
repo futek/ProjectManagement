@@ -10,9 +10,8 @@ import java.io.IOException;
 import org.junit.Test;
 
 import dk.softwarehuset.projectmanagement.app.Application;
-import dk.softwarehuset.projectmanagement.app.NonUniqueIdentifierException;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 import dk.softwarehuset.projectmanagement.app.PermissionDeniedException;
-import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 
 public class TestSignIn {
@@ -47,7 +46,7 @@ public class TestSignIn {
 	}
 
 	@Test
-	public void testEmployeeSignIn() throws IOException, PermissionDeniedException, NonUniqueIdentifierException, WrongCredentialsException {
+	public void testEmployeeSignIn() throws IOException, InvalidArgumentException, PermissionDeniedException {
 		// Sample data
 		app.signIn("ZZZZ");
 		String id = "ABCD";

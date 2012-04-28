@@ -3,7 +3,7 @@ package dk.softwarehuset.projectmanagement.ui;
 import java.io.PrintWriter;
 
 import dk.softwarehuset.projectmanagement.app.Employee;
-import dk.softwarehuset.projectmanagement.app.WrongCredentialsException;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 
 public class SignInScreen extends PromptScreen {
 	private static final String TEXT = "Employee id";
@@ -19,12 +19,12 @@ public class SignInScreen extends PromptScreen {
 
 	@Override
 	public void processInput(String input, PrintWriter out) {
-		String id = input.trim().toUpperCase();
+		String id = input.trim();
 
 		try {
 			appUI.getApp().signIn(id);
-		} catch (WrongCredentialsException e) {
-			out.println("Wrong credentials.");
+		} catch (InvalidArgumentException e) {
+			out.println(e.getMessage() + ".");
 			appUI.setScreen(new StartScreen(appUI));
 			return;
 		}

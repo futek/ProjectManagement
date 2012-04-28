@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
+
 public class Application {
 	private List<Employee> employees = new ArrayList<Employee>();
 	private List<Project> projects = new ArrayList<Project>();
@@ -27,7 +28,7 @@ public class Application {
 		return Collections.unmodifiableList(projects);
 	}
 
-	public Employee createEmployee(String id, String name) throws NonUniqueIdentifierException, PermissionDeniedException {
+	public Employee createEmployee(String id, String name) throws PermissionDeniedException, InvalidArgumentException {
 		if (currentEmployee == null) {
 			throw new PermissionDeniedException("Not signed in");
 		}
@@ -38,10 +39,16 @@ public class Application {
 
 		id = id.toUpperCase();
 
-		for (Employee employee : employees) {
-			if (id.equals(employee.getId())) {
-				throw new NonUniqueIdentifierException("Duplicate employee id");
-			}
+		// Validate id
+		Employee.validateId(id);
+
+		if (getEmployeeById(id) != null) {
+			throw new InvalidArgumentException("Id already taken");
+		}
+
+		// Validate name
+		if (name.length() == 0) {
+			throw new InvalidArgumentException("No name given");
 		}
 
 		Employee employee = new Employee(this, id, name);
@@ -94,18 +101,18 @@ public class Application {
 		return activity;
 	}
 
-	public void signIn(String id) throws WrongCredentialsException {
+	public void signIn(String id) throws InvalidArgumentException {
 		id = id.toUpperCase();
 
-		for (Employee employee : employees) {
-			if (id.equals(employee.getId())) {
-				currentEmployee = employee;
+		Employee.validateId(id);
 
-				return;
-			}
+		Employee employee = getEmployeeById(id);
+
+		if (employee == null) {
+			throw new InvalidArgumentException("Unknown id");
 		}
 
-		throw new WrongCredentialsException("Wrong id");
+		currentEmployee = employee;
 	}
 
 	public void signOut() {
@@ -117,6 +124,8 @@ public class Application {
 	}
 
 	public Employee getEmployeeById(String id) {
+		id = id.toUpperCase();
+
 		for (Employee employee : employees) {
 			if (id.equals(employee.getId())) {
 				return employee;
