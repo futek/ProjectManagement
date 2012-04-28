@@ -1,6 +1,7 @@
 package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import dk.softwarehuset.projectmanagement.app.Project;
@@ -19,16 +20,15 @@ public class SelectProjectDialog extends MenuListScreen {
 
 	@Override
 	public String[] getOptions() {
-		String[] options = new String[projects.size() + 1];
+		List<String> options = new ArrayList<String>();
 
-		options[0] = "Back";
+		options.add("Back");
 
-		int i = 1;
 		for (Project project : projects) {
-			options[i++] = String.format("[%s] %s", project.getId(), project.getName());
+			options.add(String.format("[%s] %s", project.getId(), project.getName()));
 		}
 
-		return options;
+		return options.toArray(new String[0]);
 	}
 
 	@Override
