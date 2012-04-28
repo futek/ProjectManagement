@@ -77,7 +77,7 @@ public class ApplicationUITester {
 	}
 
 	public ApplicationUITester write(String text) throws IOException {
-		BufferedReader reader = new BufferedReader(new StringReader(text));
+		BufferedReader reader = new BufferedReader(new StringReader(String.format("%s%n", text)));
 		String input = appUI.readInput(reader);
 
 		assertEquals("Unexpected input", text, input);
