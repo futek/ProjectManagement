@@ -2,8 +2,9 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
+import org.joda.time.LocalDate;
+
 import dk.softwarehuset.projectmanagement.app.Activity;
-import dk.softwarehuset.projectmanagement.app.Week;
 
 public class EditActivityStartYearScreen extends PromptScreen {
 	private Screen source;
@@ -18,11 +19,11 @@ public class EditActivityStartYearScreen extends PromptScreen {
 
 	@Override
 	public String getText() {
-		Week startDate = activity.getStartDate();
-		String text = "New start year";
+		LocalDate startDate = activity.getStartDate();
+		String text = "New start week year";
 
 		if (startDate != null) {
-			text = String.format("Old start year: %d%n%s", startDate.getYear(), text);
+			text = String.format("Old start week year: %d%n%s", startDate.getWeekyear(), text);
 		}
 
 		return text;
@@ -30,17 +31,17 @@ public class EditActivityStartYearScreen extends PromptScreen {
 
 	@Override
 	public void processInput(String input, PrintWriter out) {
-		int startYear = -1;
+		int startWeekYear = -1;
 
 		try {
-			startYear = Integer.parseInt(input);
+			startWeekYear = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 		}
 
-		if (startYear < 0) {
-			out.println("Invalid year. Try again.");
+		if (startWeekYear < 0) {
+			out.println("Invalid week year. Try again.");
 		} else {
-			appUI.setScreen(new EditActivityStartWeekScreen(appUI, source, activity, startYear));
+			appUI.setScreen(new EditActivityStartWeekScreen(appUI, source, activity, startWeekYear));
 		}
 	}
 }

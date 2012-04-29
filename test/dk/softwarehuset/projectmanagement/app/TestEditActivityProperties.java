@@ -28,11 +28,11 @@ public class TestEditActivityProperties extends SampleDataSetupWithProjects {
 	}
 
 	@Test
-	public void testEditActivityDates() {
-		// Make sure exceptions are thrown with valid dates
-		activity.setStartDate(new Week(2012, 4));
-		activity.setEndDate(new Week(2012, 6));
-		activity.setEndDate(new Week(2013, 3));
-		activity.setStartDate(new Week(2012, 1));
+	public void testEditActivityDates() throws InvalidArgumentException {
+		// Make sure no exceptions are thrown with valid dates
+		activity.setStartDate(2012, 4);
+		activity.setEndDate(2012, 6);
+		activity.setEndDate(2013, 3);
+		activity.setStartDate(2012, 1);
 	}
 }

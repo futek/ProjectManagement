@@ -2,29 +2,31 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
+import org.joda.time.LocalDate;
+
 import dk.softwarehuset.projectmanagement.app.Activity;
-import dk.softwarehuset.projectmanagement.app.Week;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 
 public class EditActivityEndWeekScreen extends PromptScreen {
 	private Screen source;
 	private Activity activity;
-	private int endYear;
+	private int endWeekYear;
 
-	public EditActivityEndWeekScreen(ApplicationUI appUI, Screen source, Activity activity, int startYear) {
+	public EditActivityEndWeekScreen(ApplicationUI appUI, Screen source, Activity activity, int endWeekYear) {
 		super(appUI);
 
 		this.source = source;
 		this.activity = activity;
-		this.endYear = startYear;
+		this.endWeekYear = endWeekYear;
 	}
 
 	@Override
 	public String getText() {
-		Week endDate = activity.getEndDate();
-		String text = "New end week";
+		LocalDate endDate = activity.getEndDate();
+		String text = "New end week number";
 
 		if (endDate != null) {
-			text = String.format("Old end week: %d%n%s", endDate.getWeekNumber(), text);
+			text = String.format("Old end week number: %d%n%s", endDate.getWeekOfWeekyear(), text);
 		}
 
 		return text;
@@ -32,24 +34,20 @@ public class EditActivityEndWeekScreen extends PromptScreen {
 
 	@Override
 	public void processInput(String input, PrintWriter out) {
-		int endWeek = -1;
+		int endWeekNumber = -1;
 
 		try {
-			endWeek = Integer.parseInt(input);
+			endWeekNumber = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 		}
 
-		if (endWeek < 0 || endWeek > 53) {
+		if (endWeekNumber < 0 || endWeekNumber > 53) {
 			out.println("Invalid week number. Try again.");
 		} else {
-			Week endDate = new Week(endYear, endWeek);
-
 			try {
-				activity.setEndDate(endDate);
-			} catch (IllegalArgumentException e) {
+				activity.setEndDate(endWeekYear, endWeekNumber);
+			} catch (InvalidArgumentException e) {
 				out.println(e.getMessage() + ". Try again.");
-
-				appUI.setScreen(source);
 			}
 
 			appUI.setScreen(source);

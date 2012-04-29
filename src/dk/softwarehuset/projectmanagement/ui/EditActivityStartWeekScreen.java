@@ -2,29 +2,31 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
+import org.joda.time.LocalDate;
+
 import dk.softwarehuset.projectmanagement.app.Activity;
-import dk.softwarehuset.projectmanagement.app.Week;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 
 public class EditActivityStartWeekScreen extends PromptScreen {
 	private Screen source;
 	private Activity activity;
-	private int startYear;
+	private int startWeekYear;
 
-	public EditActivityStartWeekScreen(ApplicationUI appUI, Screen source, Activity activity, int startYear) {
+	public EditActivityStartWeekScreen(ApplicationUI appUI, Screen source, Activity activity, int startWeekYear) {
 		super(appUI);
 
 		this.source = source;
 		this.activity = activity;
-		this.startYear = startYear;
+		this.startWeekYear = startWeekYear;
 	}
 
 	@Override
 	public String getText() {
-		Week startDate = activity.getStartDate();
-		String text = "New start week";
+		LocalDate startDate = activity.getStartDate();
+		String text = "New start week number";
 
 		if (startDate != null) {
-			text = String.format("Old start week: %d%n%s", startDate.getWeekNumber(), text);
+			text = String.format("Old start week number: %d%n%s", startDate.getWeekOfWeekyear(), text);
 		}
 
 		return text;
@@ -32,24 +34,20 @@ public class EditActivityStartWeekScreen extends PromptScreen {
 
 	@Override
 	public void processInput(String input, PrintWriter out) {
-		int startWeek = -1;
+		int startWeekNumber = -1;
 
 		try {
-			startWeek = Integer.parseInt(input);
+			startWeekNumber = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 		}
 
-		if (startWeek < 0 || startWeek > 53) {
+		if (startWeekNumber < 0 || startWeekNumber > 53) {
 			out.println("Invalid week number. Try again.");
 		} else {
-			Week startDate = new Week(startYear, startWeek);
-
 			try {
-				activity.setStartDate(startDate);
-			} catch (IllegalArgumentException e) {
+				activity.setStartDate(startWeekYear, startWeekNumber);
+			} catch (InvalidArgumentException e) {
 				out.println(e.getMessage() + ". Try again.");
-
-				appUI.setScreen(source);
 			}
 
 			appUI.setScreen(source);

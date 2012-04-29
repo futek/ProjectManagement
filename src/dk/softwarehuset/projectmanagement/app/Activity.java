@@ -7,9 +7,8 @@ import org.joda.time.LocalDate;
 
 public class Activity {
 	private String name;
-	private Week startDate;
-	private Week endDate;
 	private Map<Employee, Map<LocalDate, Integer>> registeredTime = new HashMap<Employee, Map<LocalDate, Integer>>();
+	private Interval interval = new Interval();
 
 	public Activity(String name) {
 		this.name = name;
@@ -21,30 +20,6 @@ public class Activity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setStartDate(Week startDate) throws IllegalArgumentException {
-		if (endDate != null && startDate.compareTo(endDate) == 1) {
-			throw new IllegalArgumentException("Start date after end date");
-		}
-
-		this.startDate = startDate;
-	}
-
-	public void setEndDate(Week endDate) throws IllegalArgumentException {
-		if (startDate != null && endDate.compareTo(startDate) == -1) {
-			throw new IllegalArgumentException("End date before start date");
-		}
-
-		this.endDate = endDate;
-	}
-
-	public Week getStartDate() {
-		return startDate;
-	}
-
-	public Week getEndDate() {
-		return endDate;
 	}
 
 	public void setRegisteredTime(Employee employee, LocalDate date, int duration) {
@@ -109,5 +84,21 @@ public class Activity {
 		}
 
 		return totalDuration;
+	}
+
+	public void setStartDate(int weekYear, int weekNumber) throws InvalidArgumentException {
+		interval.setStartDate(weekYear, weekNumber);
+	}
+
+	public void setEndDate(int weekYear, int weekNumber) throws InvalidArgumentException {
+		interval.setEndDate(weekYear, weekNumber);
+	}
+
+	public LocalDate getStartDate() {
+		return interval.getStartDate();
+	}
+
+	public LocalDate getEndDate() {
+		return interval.getEndDate();
 	}
 }

@@ -73,22 +73,22 @@ public class TestEditActivityProperties extends SampleDataSetupWithProjects {
 
 		// Set start date
 		appUITester.selectOption("Edit start date").expectNothing();
-		appUITester.expect("New start year: ").write("2012").expectNothing();
-		appUITester.expect("New start week: ").write("4").expectNothing();
+		appUITester.expect("New start week year: ").write("2012").expectNothing();
+		appUITester.expect("New start week number: ").write("4").expectNothing();
 
 		// Set end date
 		appUITester.selectOption("Edit end date").expectNothing();
-		appUITester.expect("New end year: ").write("2012").expectNothing();
-		appUITester.expect("New end week: ").write("6").expectNothing();
+		appUITester.expect("New end week year: ").write("2012").expectNothing();
+		appUITester.expect("New end week number: ").write("6").expectNothing();
 
 		// Edit end date
 		appUITester.selectOption("Edit end date").expectNothing();
-		appUITester.expect("Old end year: 2012", "New end year: ").write("2013").expectNothing();
-		appUITester.expect("Old end week: 6", "New end week: ").write("3").expectNothing();
+		appUITester.expect("Old end week year: 2012", "New end week year: ").write("2013").expectNothing();
+		appUITester.expect("Old end week number: 6", "New end week number: ").write("3").expectNothing();
 
 		// Edit start date
 		appUITester.selectOption("Edit start date").expectNothing();
-		appUITester.expect("Old start year: 2012", "New start year: ").write("2012").expectNothing();
-		appUITester.expect("Old start week: 4", "New start week: ").write("1").expectNothing();
+		appUITester.expect("Old start week year: 2012", "New start week year: ").write("2012").expectNothing();
+		appUITester.expect("Old start week number: 4", "New start week number: ").write("1").expectNothing();
 	}
 }
