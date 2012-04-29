@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
-
 public class Application {
 	private List<Employee> employees = new ArrayList<Employee>();
 	private List<Project> projects = new ArrayList<Project>();
@@ -63,7 +62,7 @@ public class Application {
 			throw new PermissionDeniedException("Not signed in");
 		}
 
-		int currentYear = getDate().year().get();
+		int currentYear = getDate().getYear();
 
 		if (yearOfLatestProject != currentYear) {
 			annualProjectCounter = 0;
