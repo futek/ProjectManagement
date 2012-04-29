@@ -2,6 +2,7 @@ package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
 
+import org.joda.time.IllegalFieldValueException;
 import org.joda.time.LocalDate;
 
 import dk.softwarehuset.projectmanagement.app.Activity;
@@ -31,17 +32,14 @@ public class EditActivityStartYearScreen extends PromptScreen {
 
 	@Override
 	public void processInput(String input, PrintWriter out) {
-		int startWeekYear = -1;
-
 		try {
-			startWeekYear = Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-		}
-
-		if (startWeekYear < 0) {
-			out.println("Invalid week year. Try again.");
-		} else {
+			int startWeekYear = Integer.parseInt(input);
+			(new LocalDate()).withWeekyear(startWeekYear); // valid week year?
 			appUI.setScreen(new EditActivityStartWeekScreen(appUI, source, activity, startWeekYear));
+		} catch (NumberFormatException e) {
+			out.println("Invalid week year. Try again");
+		} catch (IllegalFieldValueException e) {
+			out.println("Invalid week year. Try again");
 		}
 	}
 }
