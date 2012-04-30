@@ -7,10 +7,10 @@ import java.util.List;
 import dk.softwarehuset.projectmanagement.app.Activity;
 import dk.softwarehuset.projectmanagement.app.Project;
 
-public class PersonalOrProjectsScreen extends MenuListScreen {
+public class PersonalOrProjectScreen extends MenuListScreen {
 	private Screen source;
 
-	public PersonalOrProjectsScreen(ApplicationUI appUI, Screen source) {
+	public PersonalOrProjectScreen(ApplicationUI appUI, Screen source) {
 		super(appUI);
 
 		this.source = source;
@@ -40,7 +40,7 @@ public class PersonalOrProjectsScreen extends MenuListScreen {
 					SelectActivityDialog selectActivityDialog = new SelectActivityDialog(appUI, source, project, new Callback<Activity>() {
 						@Override
 						public void callback(Screen source, PrintWriter out, Activity activity) {
-							appUI.setScreen(new RegisterTimeOnActivityScreen(appUI, source, activity));
+							appUI.setScreen(new RegisterTimeScreen(appUI, source, activity));
 						}
 					});
 

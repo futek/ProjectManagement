@@ -3,11 +3,12 @@ package dk.softwarehuset.projectmanagement.ui;
 import java.io.PrintWriter;
 
 import dk.softwarehuset.projectmanagement.app.Activity;
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 
-public class RegisterTimeOnActivityScreen extends PromptScreen {
+public class RegisterTimeScreen extends PromptScreen {
 	private Activity activity;
 
-	public RegisterTimeOnActivityScreen(ApplicationUI appUI, Screen source, Activity activity) {
+	public RegisterTimeScreen(ApplicationUI appUI, Screen source, Activity activity) {
 		super(appUI);
 
 		this.activity = activity;
@@ -32,15 +33,21 @@ public class RegisterTimeOnActivityScreen extends PromptScreen {
 
 		if (duration < 0) {
 			out.println("Invalid duration. Try again.");
-		} else {
-			appUI.getApp().getCurrentEmployee().registerTime(activity, duration);
-
-			out.printf(
-					"Time spent on activity \"%s\" today: %d min%n",
-					activity.getName(),
-					activity.getRegisteredTime(appUI.getApp().getCurrentEmployee(), appUI.getApp().getDate()));
-
-			appUI.setScreen(new MainScreen(appUI));
+			return;
 		}
+
+		try {
+			appUI.getApp().getCurrentEmployee().registerTime(activity, duration);
+		} catch (InvalidArgumentException e) {
+			out.println(e.getMessage() + ". Try again.");
+			return;
+		}
+
+		out.printf(
+				"Time spent on activity \"%s\" today: %d min%n",
+				activity.getName(),
+				activity.getRegisteredTime(appUI.getApp().getCurrentEmployee(), appUI.getApp().getDate()));
+
+		appUI.setScreen(new MainScreen(appUI));
 	}
 }

@@ -65,7 +65,7 @@ public class MainScreen extends MenuListScreen {
 		} else if (option.equals("Create activity")) {
 			appUI.setScreen(new CreateActivityScreen(appUI, this));
 		} else if (option.equals("Register work hours")) {
-			Screen personalOrProjectsScreen = new PersonalOrProjectsScreen(appUI, this);
+			Screen personalOrProjectsScreen = new PersonalOrProjectScreen(appUI, this);
 			appUI.setScreen(personalOrProjectsScreen);
 		}
 	}

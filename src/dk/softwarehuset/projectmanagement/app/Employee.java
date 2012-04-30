@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
-
 public class Employee {
 	private String id;
 	private String name;
@@ -42,7 +41,7 @@ public class Employee {
 		activities.add(activity);
 	}
 
-	public void registerTime(Activity activity, int duration) {
+	public void registerTime(Activity activity, int duration) throws InvalidArgumentException {
 		LocalDate today = app.getDate();
 
 		duration += activity.getRegisteredTime(this, today);

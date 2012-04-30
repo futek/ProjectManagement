@@ -22,9 +22,11 @@ public class Activity {
 		this.name = name;
 	}
 
-	public void setRegisteredTime(Employee employee, LocalDate date, int duration) {
+	public void setRegisteredTime(Employee employee, LocalDate date, int duration) throws InvalidArgumentException {
 		if (duration < 0) {
-			throw new IllegalArgumentException("Negative duration");
+			throw new InvalidArgumentException("Negative duration");
+		} else if (duration > 24 * 60) {
+			throw new InvalidArgumentException("There's only 24 hours (1440 minutes) in a day");
 		}
 
 		Map<LocalDate, Integer> map;
