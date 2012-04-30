@@ -41,7 +41,7 @@ public class EditProjectEndWeekScreen extends PromptScreen {
 		} catch (NumberFormatException e) {
 		}
 
-		if (endWeekNumber < 0 || endWeekNumber > 53) {
+		if (endWeekNumber < 1 || endWeekNumber > 53) {
 			out.println("Invalid week number. Try again.");
 		} else {
 			try {
