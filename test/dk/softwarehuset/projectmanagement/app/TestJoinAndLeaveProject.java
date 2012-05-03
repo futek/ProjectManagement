@@ -84,4 +84,13 @@ public class TestJoinAndLeaveProject extends SampleDataSetupWithProjects {
 		assertEquals(0, app.getProjectById(id).getEmployees().size());
 	}
 
+	@Test(expected = InvalidArgumentException.class)
+	public void testJoinProjectTwiceFail() throws InvalidArgumentException {
+		Employee employee = app.getEmployeeById("ABCD");
+		Project project = app.getProjectById("120001");
+
+		// Add employee twice
+		project.addEmployee(employee);
+		project.addEmployee(employee);
+	}
 }

@@ -37,9 +37,9 @@ public class EditProjectEndYearScreen extends PromptScreen {
 			(new LocalDate()).withWeekyear(endWeekYear); // valid week year?
 			appUI.setScreen(new EditProjectEndWeekScreen(appUI, source, project, endWeekYear));
 		} catch (NumberFormatException e) {
-			out.println("Invalid week year. Try again");
+			out.println("Invalid week year. Try again.");
 		} catch (IllegalFieldValueException e) {
-			out.println("Invalid week year. Try again");
+			out.println("Invalid week year. Try again.");
 		}
 	}
 }

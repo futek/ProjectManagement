@@ -66,4 +66,22 @@ public class TestCreateProject extends SampleDataSetup {
 		// Attempt to add the 10000th project
 		app.createProject("Project #10000");
 	}
+
+	@Test(expected = PermissionDeniedException.class)
+	public void testCreateProjectFailNotSignedIn() throws TooManyProjectsException, PermissionDeniedException {
+		// Check nobody is signed in
+		assertNull(app.getCurrentEmployee());
+
+		// Attempt to create a project
+		app.createProject("Failed project");
+	}
+
+	@Test
+	public void testSearchForNonexistentProject() {
+		// Attempt to get a project from a nonexistent id
+		Project project = app.getProjectById("120099");
+
+		// Check no project was found
+		assertNull(project);
+	}
 }

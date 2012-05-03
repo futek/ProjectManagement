@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
 public class TestCreateEmployee {
 	private Application app = new Application();
 
@@ -140,5 +139,14 @@ public class TestCreateEmployee {
 		String id2 = "ABCD";
 		String name2 = "Echo Foxtrot Golf Hotel";
 		app.createEmployee(id2, name2);
+	}
+
+	@Test
+	public void testSearchForNonexistentEmployee() {
+		// Attempt to get a employee from a nonexistent id
+		Employee employee = app.getEmployeeById("ROFL");
+
+		// Check no employee was found
+		assertNull(employee);
 	}
 }

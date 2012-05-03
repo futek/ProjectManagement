@@ -8,7 +8,7 @@ import dk.softwarehuset.projectmanagement.util.SampleDataSetupWithProjects;
 
 public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 
-	// @Test
+	@Test
 	public void testRegisterWorkHours() throws InvalidArgumentException {
 		String id = "120001";
 
@@ -21,12 +21,9 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		// Add employee to project
 		project.addEmployee(employee);
 
+		// Create activities on project and employee
 		Activity laughingCourse = app.createActivity(employee, "Laughing Course");
 		Activity designPhase = app.createActivity(project, "Design Phase");
-
-		// Add activities
-		employee.addActivity(laughingCourse);
-		project.addActivity(designPhase);
 
 		// Register work hours
 		employee.registerTime(laughingCourse, 120);
@@ -82,5 +79,24 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		assertEquals(120 + 120 + 120 + 60 + 90 + 120 + 270, employee.getTotalRegisteredTime());
 		assertEquals(120 + 120 + 60 + 90 + 270, project.getTotalRegisteredTime());
 
+	}
+
+	@Test(expected = InvalidArgumentException.class)
+	public void testSetRegisteredTimeFailNegativeDuration() throws InvalidArgumentException {
+		// Sign in as employee
+		app.signIn("ABCD");
+
+		// Setup employee and project
+		Employee employee = app.getEmployeeById("ABCD");
+		Project project = app.getProjectById("120001");
+
+		// Add employee to project
+		project.addEmployee(employee);
+
+		// Create activity on project
+		Activity activity = app.createActivity(project, "Design Phase");
+
+		// Register negative duration directly
+		activity.setRegisteredTime(employee, app.getDate(), -30);
 	}
 }

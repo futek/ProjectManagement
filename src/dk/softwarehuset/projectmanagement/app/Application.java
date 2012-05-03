@@ -87,7 +87,12 @@ public class Application {
 	public Activity createActivity(Project project, String name) {
 		Activity activity = new Activity(name, false);
 
-		project.addActivity(activity);
+		try {
+			project.addActivity(activity);
+		} catch (InvalidArgumentException e) {
+			// The activity was just created above
+			// This will never throw "Activity already added"
+		}
 
 		return activity;
 	}
@@ -95,7 +100,12 @@ public class Application {
 	public Activity createActivity(Employee employee, String name) {
 		Activity activity = new Activity(name, true);
 
-		employee.addActivity(activity);
+		try {
+			employee.addActivity(activity);
+		} catch (InvalidArgumentException e) {
+			// The activity was just created above
+			// This will never throw "Activity already added"
+		}
 
 		return activity;
 	}

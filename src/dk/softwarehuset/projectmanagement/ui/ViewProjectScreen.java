@@ -97,8 +97,14 @@ public class ViewProjectScreen extends MenuListScreen {
 					final SelectEmployeeDialog selectEmployeeDialog = new SelectEmployeeDialog(appUI, source, project, new Callback<Employee>() {
 						@Override
 						public void callback(Screen source, PrintWriter out, Employee employee) {
-							// Add the employee to the activity
-							employee.addActivity(activity);
+							try {
+								// Add the employee to the activity
+								employee.addActivity(activity);
+							} catch (InvalidArgumentException e) {
+								// Shouldn't happen
+								out.printf(e.getMessage() + ".");
+							}
+
 							out.printf("Employee \"%s\" assigned to activity \"%s\".%n", employee.getName(), activity.getName());
 
 							// Remove the option selected

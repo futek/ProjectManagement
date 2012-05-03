@@ -8,7 +8,7 @@ import org.junit.Test;
 import dk.softwarehuset.projectmanagement.app.Application;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 
-public class SystestEditProjectDate {
+public class SystestEditProjectStartDate {
 	Application app = new Application();
 	ApplicationUI appUI = new ApplicationUI(app);
 	ApplicationUITester appUITester = new ApplicationUITester(appUI);

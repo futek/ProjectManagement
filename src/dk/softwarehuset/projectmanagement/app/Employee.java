@@ -33,9 +33,9 @@ public class Employee {
 		return activities;
 	}
 
-	public void addActivity(Activity activity) throws IllegalStateException {
+	public void addActivity(Activity activity) throws InvalidArgumentException {
 		if (activities.contains(activity)) {
-			throw new IllegalStateException("Activity already added");
+			throw new InvalidArgumentException("Activity already added");
 		}
 
 		activities.add(activity);

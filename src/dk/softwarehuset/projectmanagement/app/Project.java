@@ -36,7 +36,7 @@ public class Project {
 
 	public void addEmployee(Employee newEmployee) throws InvalidArgumentException {
 		for (Employee employee : employees) {
-			if (id.equals(employee.getId())) {
+			if (newEmployee.getId().equals(employee.getId())) {
 				throw new InvalidArgumentException("Employee on project already");
 			}
 		}
@@ -64,9 +64,9 @@ public class Project {
 		return activities;
 	}
 
-	public void addActivity(Activity activity) throws IllegalStateException {
+	public void addActivity(Activity activity) throws InvalidArgumentException {
 		if (activities.contains(activity)) {
-			throw new IllegalStateException("Activity already added");
+			throw new InvalidArgumentException("Activity already added");
 		}
 
 		activities.add(activity);
