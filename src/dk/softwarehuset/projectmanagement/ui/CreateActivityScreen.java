@@ -39,6 +39,7 @@ public class CreateActivityScreen extends PromptScreen {
 			activity = appUI.getApp().createActivity(project, name);
 			out.printf("Activity \"%s\" created on project \"%s\".%n", name, project.getName());
 		} else {
+			// Add activity to employee
 			activity = appUI.getApp().createActivity(appUI.getApp().getCurrentEmployee(), name);
 			out.printf("Activity \"%s\" created.%n", name);
 		}

@@ -63,7 +63,7 @@ public class SystestRegisterTimeWithActivity {
 		// Sign in and prepare to register time
 		appUITester.selectOption("Sign in").write("ABCD").expect("You signed in as \"Alpha Bravo Charlie Delta\".");
 		appUITester.selectOption("Register work hours").expectNothing();
-		appUITester.selectOption("Projects").expectNothing();
+		appUITester.selectOption("Project activities").expectNothing();
 		appUITester.selectOption("[150001] Whatever").expectNothing();
 		appUITester.selectOption("Slack").expectNothing();
 
