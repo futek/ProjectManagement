@@ -9,9 +9,11 @@ public class Activity {
 	private String name;
 	private Map<Employee, Map<LocalDate, Integer>> registeredTime = new HashMap<Employee, Map<LocalDate, Integer>>();
 	private Interval interval = new Interval();
+	private boolean personal;
 
-	public Activity(String name) {
+	public Activity(String name, boolean personal) {
 		this.name = name;
+		this.personal = personal;
 	}
 
 	public String getName() {
@@ -102,5 +104,9 @@ public class Activity {
 
 	public LocalDate getEndDate() {
 		return interval.getEndDate();
+	}
+
+	public boolean isPersonal() {
+		return personal;
 	}
 }

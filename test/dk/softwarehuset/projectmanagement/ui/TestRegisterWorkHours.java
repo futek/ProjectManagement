@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import dk.softwarehuset.projectmanagement.app.InvalidArgumentException;
 import dk.softwarehuset.projectmanagement.util.ApplicationUITester;
 import dk.softwarehuset.projectmanagement.util.SampleDataSetupWithProjects;
 
@@ -13,8 +14,8 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 	ApplicationUITester appUITester = new ApplicationUITester(appUI);
 
 	@Before
-	public void setupActivities() throws IOException {
-		// Sign in as an employee
+	public void setupActivities() throws IOException, InvalidArgumentException {
+		// Sign in as an employee IJKL
 		appUITester.selectOption("Sign in").expectNothing();
 		appUITester.expect("Employee id: ").write("IJKL").expect("You signed in as \"India Juliet Kilo Lima\".");
 
@@ -29,6 +30,13 @@ public class TestRegisterWorkHours extends SampleDataSetupWithProjects {
 		// Create activity on project
 		appUITester.selectOption("Create activity").expectNothing();
 		appUITester.expect("Activity name: ").write("Design").expect("Activity \"Design\" created on project \"Goodbye World!\".");
+		appUITester.selectOption("Back").expectNothing();
+
+		// Assign employee IJKL to activity
+		appUITester.selectOption("Assign employees to activity").expectNothing();
+		appUITester.selectOption("Design").expectNothing();
+		appUITester.selectOption("[IJKL] India Juliet Kilo Lima").expect("Employee \"India Juliet Kilo Lima\" assigned to activity \"Design\".");
+		appUITester.selectOption("Back").expectNothing();
 
 		// Go back to main menu
 		appUITester.selectOption("Back").expectNothing();

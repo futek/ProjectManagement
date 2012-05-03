@@ -1,6 +1,7 @@
 package dk.softwarehuset.projectmanagement.ui;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import dk.softwarehuset.projectmanagement.app.Activity;
@@ -27,7 +28,13 @@ public class SelectActivityDialog extends MenuListScreen {
 		this.source = source;
 		this.callback = callback;
 
-		activities = employee.getActivities();
+		List<Activity> filteredActivities = new ArrayList<Activity>();
+		for (Activity activity : employee.getActivities()) {
+			if (activity.isPersonal()) {
+				filteredActivities.add(activity);
+			}
+		}
+		activities = filteredActivities;
 	}
 
 	@Override

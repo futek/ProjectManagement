@@ -85,7 +85,7 @@ public class Application {
 	}
 
 	public Activity createActivity(Project project, String name) {
-		Activity activity = new Activity(name);
+		Activity activity = new Activity(name, false);
 
 		project.addActivity(activity);
 
@@ -93,7 +93,7 @@ public class Application {
 	}
 
 	public Activity createActivity(Employee employee, String name) {
-		Activity activity = new Activity(name);
+		Activity activity = new Activity(name, true);
 
 		employee.addActivity(activity);
 
