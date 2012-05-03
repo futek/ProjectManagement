@@ -35,17 +35,22 @@ public class ViewProjectScreen extends MenuListScreen {
 		}
 
 		if (inProject) {
+			// Current employee in project
 			options.add("Leave project");
 			options.add("Browse activities");
 
 			if (project.getProjectLeader() == null) {
+				// No project leader exists
 				options.add("Register as project leader");
 			} else if (project.getProjectLeader() == appUI.getApp().getCurrentEmployee()) {
+				// Current employee is project leader
 				options.add("Unregister as project leader");
 				options.add("Create activity");
+				options.add("Assign employees to activity");
 				options.add("Edit project properties");
 			}
 		} else {
+			// Current employee NOT in project
 			options.add("Join project");
 		}
 
@@ -83,6 +88,29 @@ public class ViewProjectScreen extends MenuListScreen {
 			out.println("You're no longer project leader for the project \"" + project.getName() + "\".");
 		} else if (option.equals("Create activity")) {
 			appUI.setScreen(new CreateActivityScreen(appUI, this, project));
+		} else if (option.equals("Assign employees to activity")) {
+			// Ask for an activity
+			SelectActivityDialog selectActivityDialog = new SelectActivityDialog(appUI, this, project, new Callback<Activity>() {
+				@Override
+				public void callback(Screen source, PrintWriter out, final Activity activity) {
+					// Ask for an employee on the project
+					final SelectEmployeeDialog selectEmployeeDialog = new SelectEmployeeDialog(appUI, source, project, new Callback<Employee>() {
+						@Override
+						public void callback(Screen source, PrintWriter out, Employee employee) {
+							// Add the employee to the activity
+							employee.addActivity(activity);
+							out.printf("Employee \"%s\" assigned to activity \"%s\".%n", employee.getName(), activity.getName());
+
+							// Remove the option selected
+							((SelectEmployeeDialog) source).removeOption(employee); // TODO: This cast is not optimal..
+						}
+					});
+
+					appUI.setScreen(selectEmployeeDialog);
+				}
+			});
+
+			appUI.setScreen(selectActivityDialog);
 		} else if (option.equals("Edit project properties")) {
 			appUI.setScreen(new EditProjectPropertiesScreen(appUI, this, project));
 		}
