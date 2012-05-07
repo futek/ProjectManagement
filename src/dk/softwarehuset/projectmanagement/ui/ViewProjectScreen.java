@@ -37,7 +37,6 @@ public class ViewProjectScreen extends MenuListScreen {
 		if (inProject) {
 			// Current employee in project
 			options.add("Leave project");
-			options.add("Browse activities");
 
 			if (project.getProjectLeader() == null) {
 				// No project leader exists
@@ -46,6 +45,7 @@ public class ViewProjectScreen extends MenuListScreen {
 				// Current employee is project leader
 				options.add("Unregister as project leader");
 				options.add("Create activity");
+				options.add("Browse activities");
 				options.add("Assign employees to activity");
 				options.add("Edit project properties");
 			}

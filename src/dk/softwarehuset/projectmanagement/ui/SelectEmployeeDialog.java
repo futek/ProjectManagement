@@ -19,13 +19,14 @@ public class SelectEmployeeDialog extends MenuListScreen {
 		this.callback = callback;
 	}
 
-	// Present only employee who joined a specific project
+	// Present only employees who joined a specific project
 	public SelectEmployeeDialog(ApplicationUI appUI, Screen source, Project project, Callback<Employee> callback) {
 		super(appUI);
 
 		this.source = source;
 		this.callback = callback;
 
+		// Filter to employees on given project
 		List<Employee> filteredEmployees = new ArrayList<Employee>();
 		for (Employee employee : employees) {
 			if (project.getEmployees().contains(employee)) {
